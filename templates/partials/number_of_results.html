@@ -1,0 +1,18 @@
+{% load i18n %}
+
+<div>
+	{% if selected_products_obj|length > 0 %}
+
+	    <strong>{{selected_products_obj.count}}</strong>&nbsp;{% trans 'products' %}
+
+	{% elif selected_products_obj == 1 %}
+	{{selected_products_obj|length}}
+	    <strong>{{selected_products_obj.count}}</strong>&nbsp;{% trans 'product' %}
+	
+
+	{% else %}
+	{{selected_products_obj|length}}
+		<strong>{{selected_products_obj.count}}</strong>&nbsp;{% trans 'products' %}
+	
+	{% endif %}
+</div>

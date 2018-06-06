@@ -1,0 +1,40 @@
+{% extends "global/layout.html" %}
+
+{% block content_wrapper %}
+
+<main id="content_inner" class="{% block content_classnames %}{% endblock %}">
+
+    {% block before_layout %}{% endblock %}
+
+    <div class="grid {% block layout_extra_classnames %}{% endblock %}">
+        <div class="grid__sidebar {% block layout_sidebar_extra_classnames %}{% endblock %}">
+            {% block column_left %}{% endblock %}
+        </div>
+        <div class="grid__main">
+            <div class="grid__banner">{% block grid_banner %}{% endblock %}</div>
+            {% block grid_header %}
+            <div class="grid__header">
+                {% block grid_header_title %}
+                    <div class="grid__headerTitle">{% block grid_header_titleContent %}{% endblock %}</div>
+                {% endblock %}
+                <div class="grid__headerNav">
+                    <div class="grid__headerNavGroup">
+                        {% block grid_header_filters %}{% endblock %}
+                    </div>
+                    <div class="grid__headerNavGroup">
+                        {% block grid_header_sortBy %}{% endblock %}
+                        {% block grid_header_results %}{% endblock %}
+                    </div>
+                </div>
+            </div>
+            {% endblock %}
+
+            <div class="grid__content">{% block content %}{% endblock %}</div>
+        </div>
+    </div>
+
+    {% block after_layout %}{% endblock %}
+
+</main>
+
+{% endblock %}

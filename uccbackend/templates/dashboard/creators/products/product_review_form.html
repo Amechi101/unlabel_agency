@@ -1,0 +1,78 @@
+{% extends "global/layout.html" %}
+
+{% load i18n %}
+{% load creator_discount %}
+
+{% block title %}
+    {{product.name}} {% trans 'Content Creation' %} | {{ block.super }}
+{% endblock %}
+
+{% block content %}
+
+      <div class="register">
+        <section class="register__header">
+            <div class="container container--narrow">
+                <h2 class="register__headerTitle title title--small">{{product.name}} {% trans "Content Creation Form" %}</h2>
+                <p>Please read the <span style="font-family: 'FaroWeb-BoldLucky';">Content Creation Policy</span> to get a better understanding of the requirements. If you have any issues submitting your content please contact <a class="link" href="mailto:creators@unlabel.us">creators@unlabel.us</a> and a member of our Creator Relations team will get back to you.</p>
+            </div>
+        </section>
+        <hr>
+        <nav class="nav nav--internal">
+		    <ul class="nav__list">
+		        <li class="nav__item">
+		            <a href="#content-creation-policy" class="link link--thick">{% trans 'Content Creation Policy' %}</a>
+		        </li>
+		    </ul>
+		</nav>
+        
+        <section class="register__main">
+            <div class="container container--narrow">
+                <form enctype="multipart/form-data" method="post" class="form form--m-2 form-stacked">
+                    {% csrf_token %}
+                    {% include 'partials/form_field.html' with field=form.summary %}
+
+                    {% include 'partials/form_field.html' with field=form.review_image_1 %}
+
+                    {% include 'partials/form_field.html' with field=form.review_image_2 %}
+
+                    {% include 'partials/form_field.html' with field=form.review_image_3 %}
+
+                    {% include 'partials/form_field.html' with field=form.review_image_4 %}
+
+                    {% include 'partials/form_field.html' with field=form.review_image_5 %}
+
+                    {% include 'partials/form_field.html' with field=form.video %}
+
+                    {% if product.availability == 'RENT' %}
+	                    {% if product.discount_type == 'BRAND' %}
+	                    	<p class="form__group">
+	                    		{{product.name}} can be purchased through our rent to buy program for <span class="link">${{product.brand_discount}}</span> (Retail Price ${{ product.price }}). Just check the "Purchase Product" box below before you submit and a member of our team will follow up with you.    
+	                    	</p>
+	                    	{% include 'partials/form_field.html' with field=form.purchase_product %}
+
+	                    {% elif product.discount_type == 'UNLABEL' %}
+	                    	<p class="form__group">
+	                    		<small>{{product.name}}</small> can be purchased through our rent to buy program for <span class="link">${{product.price|creator_discount}}</span> (Retail Price ${{ product.price }}). Just check the "Purchase Product" box below before you submit and a member of our team will follow up with you.    
+	                    	</p>
+	                    {% else %}
+	                    	<p class="form__group">
+	                    		<span style="font-family: 'FaroWeb-BoldLucky';">{{product.name}}</span> can be purchased through our rent to buy program for <span style="font-family: 'FaroWeb-BoldLucky';">${{ product.price }}</span>. Just check the <span style="font-family: 'FaroWeb-BoldLucky';">"Purchase Product"</span> box below before you submit and a member of our team will follow up with you.   
+	                    	</p>
+
+	                    {% endif %}
+
+	                    {% include 'partials/form_field.html' with field=form.purchase_product %}
+
+	                {% elif product.availability == 'GIFTED' or product.availability == 'CURATED' %}
+
+	                {% endif %}
+                    <div class="form__actions">
+                        <button name="registration_submit" type="submit" class="cta cta--dark">{% trans 'Submit Review' %}</button>
+                        <a class="cta" href="{% url 'creators:selected_products' %}">Go Back</a>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </div>
+	{% include "partials/content_creation_policy.html" %}
+{% endblock %}

@@ -1,0 +1,15 @@
+{% load i18n %}
+
+<form method="get" action="{% url 'search:search' %}" class="search-form {% if theme == "dark" %}search-form--dark{% endif %}">
+	<div class="search-form__wrapper">
+		<fieldset class="search-form__fieldset">
+			<div class="search-form__field">
+				<label for="id_q" class="search-form__label">{% trans 'Type to search' %}</label>
+				{{ search_form.q }}
+			</div>
+			<button type="submit" class="search-form__submit">
+				<span class="fonticon fonticon--box fonticon--magnifyingglass"></span>
+			</button>
+		</fieldset>
+    </div>
+</form>

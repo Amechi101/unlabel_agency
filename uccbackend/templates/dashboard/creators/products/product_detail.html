@@ -1,0 +1,88 @@
+{% extends "global/layout.html" %}
+
+{% load i18n %}
+{% load cloudinary %} 
+{% load creator_discount %}
+
+{% block title %}
+    {{ product.name }} | {{ block.super }}
+{% endblock %}
+
+{% block grid_header_title %}
+{% endblock %}
+
+{% block content %}
+	<div class="product">
+		<div class="container container--m-pad">
+			<div class="product__overview">
+				<div class="product__galleryContainer">
+					{% block product_gallery %}
+						<div class="gallery">
+							<div class="swiper-container gallery__larges">
+								<ul class="swiper-wrapper">
+									<li class="swiper-slide">
+										<div class="gallery__largesImgContainer">
+											
+											<img src="{% cloudinary_url product.image %}" alt="{{ product.name }}" />
+											
+										</div>
+									</li>
+								</ul>
+								{% if product.is_exclusive == True %}
+									<div class="product__exclusiveLabel">{% trans "Unlabel Exclusive" %}</div>
+								{% endif %}
+							</div>
+						</div>
+					{% endblock %}
+				</div>
+				<div class="product__content">
+					<div>
+						<h1 class="title product__title">{{ product.name }}</h1>
+						
+		                <h2 class="product__brand">{{product.brand.brand_name}}</h2>
+					</div>
+					<div>
+						<p class="product__price">${{product.price}}</p>
+					</div>
+		            <div>
+		            	{% block product_basket_form %}
+		                    <div class="product__actions">
+							    <form id="add_to_basket_form" method="post" novalidate>
+							        {% csrf_token %}
+							        <div class="basket-form__row">
+							            <div class="basket-form__col">
+							                <button type="submit" class="cta cta--dark">{% trans "Select Product" %}</button>
+							                <a class="cta" href="{% url 'creators:products_list' %}">Nevermind</a>
+							            </div>
+							        </div>
+							    </form>
+		                    </div>
+		                {% endblock %}
+		           		<p class="product__sizeWorn"> <span class="bold_text">Compensation Type</span>:
+		           			{% if product.compensation_type == 'COMMISSION' %}
+								{% trans "Commission Only" %}
+							
+							{% elif product.compensation_type == 'RATE_COMMISSION' %}
+								{% trans "UL Creator Rate + Commission" %}
+							
+							{% endif %}
+						</p>
+		            </div>
+				</div>
+			</div>
+		</div>
+
+		<div class="product__details">
+		    <div class="grid grid--inverted grid--borderBottomLess">
+		        <div class="grid__main">
+		            {% block product_description %} 
+			            <div class="product__descContainer">
+			            	<p class="subtitle">{% trans 'Product Description' %}</p>
+			            	<div class="desc">{{product.description}}</div>
+			            </div>
+		            {% endblock %}
+		        </div>
+		    </div>
+		</div>
+	</div>
+{% endblock content %}

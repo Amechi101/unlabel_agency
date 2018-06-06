@@ -1,0 +1,76 @@
+{% extends "dashboard/brands/base_dashboard.html" %}
+
+{% load i18n %}
+{% load cloudinary %} 
+
+{% block grid_banner %}
+    <h2 class="title title--small">{% trans "Products" %}</h2>
+{% endblock %}
+
+{% block grid_header_titleContent %}
+    <a class="cta cta--dark" href="{% url 'brands:create_product' %}">Create Product</a>
+{% endblock %}
+
+{% block grid_header_results %}
+    <div>
+    {% if products|length > 1 %}
+
+        <strong>{{products.count}}</strong>&nbsp;{% trans 'products' %}
+
+    {% elif products|length == 1 %}
+ 
+        <strong>{{products.count}}</strong>&nbsp;{% trans 'product' %}
+    
+
+    {% else %}
+
+        <strong>{{products.count}}</strong>&nbsp;{% trans 'products' %}
+    
+    {% endif %}
+</div>
+{% endblock %}
+
+{% block content %}
+    {% if products %}
+        <ol class="grid__list color-context color-context--products">
+            {% for obj in products %}
+                <li class="grid__item grid__item--s-2 grid__item--l-3 grid__item--xl-4 grid__item--xxl-5">
+                    <article>
+                        <div class="grid__itemInner">
+                            <a class="u-block" href="{% url 'brands:product_detail' obj.pk %}" title="{{ obj.name }}">
+                                <figure>  
+                                    <div class="img-container img-container--square">
+                                        <img src="{% cloudinary_url obj.image %}" alt="{{ obj.name }}" width="284" height="284">
+                                    </div>
+                                    <figcaption>
+                                        <h2>{{ obj.name }}</h2>
+                                        <h3><small>Brand:</small> {{obj.brand}}</h3>    
+                                        <p><small>Category:</small> {{ obj.category }}</p>
+                                    </figcaption>
+                                </figure>
+                            </a>
+                        </div>
+                    </article>
+                </li>
+            {% endfor %}
+        </ol>
+    {% else %}
+        <div class="grid__emptyMessage">
+            <p class="missing">
+                
+                {% blocktrans %}
+                    No products available
+                {% endblocktrans %}
+            </p>
+        </div>
+    {% endif %}
+{% endblock content %}
+
+{# block after_layout #}
+    {% if products %}
+        <div class="grid__paginationContainer color-context color-context--products">
+            {% include "partials/pagination.html" %}
+        </div>
+    {% endif %}
+{# endblock after_layout #}
+

@@ -1,0 +1,31 @@
+{% extends 'dashboard/creators/dashboard.html' %}
+
+{% block content %}
+{% include 'dashboard/creators/_header.html' with active='taken' %}
+  <div class="card">
+    <table class="table mb-0">
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>Subject</th>
+          <th>Score</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{complete_product_reviews}}
+        {% for taken_product in complete_product_reviews %}
+        {{taken_product}}
+          <tr>
+            <td>{{ taken_product.product.name }}</td>
+            <td>{{ taken_product.product.subject.get_html_badge }}</td>
+            <td>{{ taken_product.date_completed }}</td>
+          </tr>
+        {% empty %}
+          <tr>
+            <td class="bg-light text-center font-italic" colspan="3">You haven't completed any product yet.</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endblock %}

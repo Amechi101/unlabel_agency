@@ -1,0 +1,16 @@
+{% load cloudinary %} 
+
+{% load i18n %}
+
+{% block product %}
+<figure>  
+    <div class="img-container img-container--square">
+        <img src="{% cloudinary_url obj.image %}" alt="{{ obj.name }}" width="284" height="284">
+    </div>
+    <figcaption>
+        <h2>{{ obj.name }}</h2>
+        <h3><small>Brand:</small> {{obj.brand}}</h3>    
+        <p><small>Category:</small> {{ obj.category }}</p>
+    </figcaption>
+</figure>
+{% endblock %}

@@ -1,0 +1,166 @@
+{% extends "global/layout_2_col.html" %}
+{% load i18n %}
+
+{% block grid_header_titleContent %}
+<h1 class="title">{% trans 'Creator FAQ' %}</h1>
+{% endblock %}
+
+{% block layout_sidebar_extra_classnames %}u-desktop-only{% endblock %}
+
+{% block column_left %}
+	<nav class="anchors-nav">
+	    <ul>
+	        <li>
+	            <a class="anchors-nav__link smoothscroll" href="#unlabel-creator-rates">Unlabel Creator Rates</a>
+	        </li>
+	        <li>
+	            <a class="anchors-nav__link smoothscroll" href="#content-creation-process">Content Creation Process</a>
+	        </li>
+	        <li>
+	            <a class="anchors-nav__link smoothscroll" href="#content-promotion-guidelines">Content Promotion Guidlines</a>
+	        </li>
+	        <li>
+	            <a class="anchors-nav__link smoothscroll" href="#general-questions">General Questions</a>
+	        </li>
+	    </ul>
+	</nav>
+{% endblock %}
+
+
+{% block grid_header_filters %}
+	<div class="select select--borderLess u-mobile-only">
+	    <select class="smoothscroll">
+	        <option value="#unlabel-creator-rates">
+	            Unlabel Creator Rates
+	        </option>
+	        <option value="#content-creation-process">
+	            Content Creation Guidelines
+	        </option>
+	        <option value="#content-promotion-guidelines">
+	            Content Promotion Gudielines
+	        </option>
+	       <option value="#general-questions">
+	            General Questions
+	        </option>
+	    </select>
+	</div>
+{% endblock %}
+
+{% block content %}
+	<div class="container container--medium container--left">
+	    <div class="textual">
+	        
+	        <section class="textual__section" id="unlabel-creator-rates">
+
+	            <!-- Unlabel Creator Rates -->
+	            <h2 class="title title--small">Unlabel Creator Rates</h2>
+	            <h3 class="subtitle subtitle--small">How are Creator rates negotiated? Does Unlabel act as an agent and take a percentage? What is the average rate for brand collaborations?</h3>
+	            <div>
+	                <p>We will be emailing you product options so you can collaborate on paid projects with any brand on-demand. Your rates are calculated based on your Unlabel Creator Likeness Score.</p>
+	            </div>
+	            
+	            <h3 class="subtitle subtitle--small">What is the Unlabel Creator Likeness Score?</h3>
+	            <div>
+	                <p>Your Creator Likeness Score helps determine how much you get paid per product collaboration, which is calculated by our algorithm.</p>
+	            </div>
+
+	            <h3 class="subtitle subtitle--small">I am new to Unlabel and haven’t done a product review yet, so do I have an Unlabel Creator Likeness Score?</h3>
+	            <div>
+	                <p>No. All Creators who are new to Unlabel will have a default rate of $50 per post. Your rate will increase from this baseline according to your Unlabel Creator Likeness Score, and will build over time.</p>
+	            </div>
+	        </section>
+
+	        <!-- Content Creation Process -->
+	        <section class="textual__section" id="content-creation-process">
+	            <h2 class="title title--small">Content Creation Process</h2>
+	            <h3 class="subtitle subtitle--small">How long do I have to respond to product selection options?</h3>
+	            <div>
+	                <p>You have 24 hours from the time we email you to respond with your product selections.</p>
+	            </div>
+	            
+	            <h3 class="subtitle subtitle--small">How long will it take to receive product?</h3>
+	            <div>
+	                <p>Delivery times will vary from brand to brand, but we will send you tracking information once it becomes available.</p>
+	            </div>
+
+	            <h3 class="subtitle subtitle--small">How much time do I have to create content for each project?</h3>
+	            <div>
+	                <p>You have 5 days from the time the package is received (based on the tracking information) to create and email us the content you’ve produced</p>
+
+	                <p>Under special circumstances we may be able to extend this deadline, but advance notice must be given.</p>
+	            </div>
+	        </section>  
+
+	        <!-- Content Promotion Guidelines -->
+	        <section class="textual__section" id="content-promotion-guidelines">
+	            <h2 class="title title--small">Content Promotion Guidelines</h2>
+	            <h3 class="subtitle subtitle--small">What are my options for promoting Unlabel and the products I work with?</h3>
+	            <div>
+	                <p>Your Creator Profile on <a class="links-faq" href="/">unlabel.us</a> acts as a portfolio for your branded content. You choose how you want to drive traffic to each product on Unlabel, whether it Instagram, YouTube, Facebook, Snapchat etc…so you have full control over your owned social networks, and can stay as authentic as possible. However, we require that one of the social channels you post to is Instagram, as the platform has the highest levels of engagement. Even an Instagram story is adequate to show proof of promotion. Ultimately your project rates are determined by your success in promoting these products, so choose the platforms that work best for you!</p>
+	            </div>
+	            
+	            <h3 class="subtitle subtitle--small">Are there any guidelines on how we should promote a post on a particular (online) channel?</h3>
+	            <div>
+	                <p>Yes, each guideline is listed below:</p>
+	           
+	                <h4 class="unlabel-bold">Instagram</h4>
+	                <li>@<a class="links-faq" href="https://www.instagram.com/unlabel_us/">unlabel_us</a> must be tagged in both the photo and caption (or in the photo/video if using Instagram stories)</li>
+	                <li>Direct traffic to the Unlabel marketplace where consumers can purchase the featured product(s).</li>
+
+	                <br>
+	                <h4 class="unlabel-bold">YouTube</h4>
+	                <li>Unlabel must be mentioned in the first half of the video, and linked in the description.</li>
+	                <li>Direct traffic to the item you featured by linking the exact item on the Unlabel Consumer Marketplace.</li>
+
+	                <br>
+	                <h4 class="unlabel-bold">Tumblr</h4>
+	                <li>The item link in the Unlabel Consumer Marketplace must be used as the click-through link for the post.</li>
+
+	                <br>
+	                <h4 class="unlabel-bold">Facebook</h4>
+	                <li>You must include the item link in the Unlabel Consumer Marketplace within your caption/status.</li>
+
+	                <br>
+	                <h4 class="unlabel-bold">Twitter</h4>
+	                <li>Your must include the item link in the Unlabel Consumer Marketplace within your tweet.</li>
+
+	                <br>
+	                <h4 class="unlabel-bold">Personal Blog/Website</h4>
+	                <li>You must mention and link Unlabel within the first paragraph of copy, and link the direct item from the Unlabel Consumer Marketplace within the post.</li>
+
+	                <br>
+	                <h4 class="unlabel-bold">Pinterest</h4>
+	                <li>The item link in the Unlabel Consumer Marketplace must be used as the click-through link for the post.</li>
+
+	                <br>
+	                <h4 class="unlabel-bold">Snapchat</h4>
+	                <li>The item link in the Unlabel Consumer Marketplace must be used as the click-through link.</li>
+	            </div>
+
+	            <h3 class="subtitle subtitle--small">Do Creators get paid for posting on their social media platforms? (i.e Does Unlabel pay Creators based on their engagement stats on social media such as CPM, CPC, CPE, etc… since Instagram and other platforms have a higher probability for engagement, given their much larger user bases?)</h3>
+	            <div>
+	                <p>As mentioned before we calculate each Creator’s rate based on how well your engagement drives sales for the products you review, not how much engagement you receive on your social media channels. This is why we give you the freedom to promote your content on the social channels of your choice.</p>
+	            </div>
+	        </section>
+
+	        <!-- General Questions -->
+	        <section class="textual__section" id="general-questions">
+	            <h2 class="title title--small">General Questions</h2>
+	            <h3 class="subtitle subtitle--small">What is the Consumer Marketplace?</h3>
+	            <div>
+	                <p>The Consumer Marketplace is where your branded content is posted. You can engagement from your social channels to your Creator Profile on the Consumer Marketplace so your audience can see all the collaboration you’ve done and purchase the items they see you post.</p>
+	            </div>
+	            
+	            <h3 class="subtitle subtitle--small">What kinds of brands can I find on Unlabel?</h3>
+	            <div>
+	                <p>Unlabel works with a wide variety of brands ranging from avant-garde, to minimal, to street style. We try to curate our marketplace to feature unique products you’ll love, and hope Unlabel helps you discover your new favorite brands. We are always open to hearing suggestions about brands you want to see on the platform —just send them to <a class="links-faq" href="mailto:creators@unlabel.us">creators@unlabel.us</a>. At this time our focus is on curating emerging and independent brands.</p>
+	            </div>
+
+	            <h3 class="subtitle subtitle--small">I'm a creator and want to create content for Unlabel, how do I join Unlabel as an Unlabel Creator?</h3>
+	            <div>
+	                <p>Just share some <a class="links-faq" href="https://unlabel-us.myshopify.com/pages/for-creators">info</a> with us and someone from our Unlabel Creator Relations team will be in touch.</p>
+	            </div>
+	        </section>
+	    </div>
+    </div>
+{% endblock content %}

@@ -1,0 +1,68 @@
+{% load form_tags %}
+{% load widget_tweaks %}
+{% load i18n %}
+
+{% if field.is_hidden %}
+    {{ field }}
+{% else %}
+    {% comment %}
+        Make the field widget type available to templates so we can mark-up
+        checkboxes differently to other widgets.
+    {% endcomment %}
+    {% annotate_form_field field %}
+
+    {% block control_group %}
+        <div class="form-group form__group {% if field.errors %}has-error{% endif %}">
+
+            {% block label %}
+                {% if not nolabel and field.widget_type != 'CheckboxInput' %}
+                    <label for="{{ field.auto_id }}" class="form__label {% if style|default:"stacked" != 'stacked' %}col-sm-4{% endif%} control-label{% if field.field.required %} required{% endif %}">
+                        {% if field.field.required %}*{% endif %}{{ field.label|safe }}
+                    </label>
+                {% endif %}
+            {% endblock %}
+
+            {% block controls %}
+                <div class="form__field {% if style|default:"stacked" != 'stacked' %}col-sm-7{% endif %}">
+                    {% block widget %}
+                        {% if field.widget_type == 'CheckboxInput' %}
+                            <label for="{{ field.auto_id }}" class="checkbox {% if field.field.required %}required{% endif %}">
+                                {{ field.label|safe }}
+                                {% render_field field class+="form-control" %}
+                            </label>
+                        {% elif field.widget_type == "Select" or field.widget_type == "SelectDateWidget" or field.widget_type == "AdvancedSelect" or field.widget_type == "SelectMultiple" %}
+                            <div class="select {% if field.widget_type == "SelectMultiple" %}select--multiple{% endif %}">
+                                {% render_field field class+="form-control" %}
+                            </div>
+                        {% elif field.widget_type == "FileInput" %}
+                            <label for="{{ field.auto_id }}" class="fileinput" data-multiple-caption="{% trans '%files_count% files selected' %}" data-multiple-count-placeholder="%files_count%">
+                                {% render_field field class+="form-control fileinput__input" %}
+                                <span class="fileinput__btn cta cta--input">{% trans 'Select File' %}</span>
+                                <span class="fileinput__filename">&nbsp;</span>
+                            </label>
+                        {% else %}
+                            {% render_field field class+="form-control" %}
+                        {% endif %}
+                    {% endblock %}
+
+                    {% block errors %}
+                        <div class="form__fieldMessage form__fieldMessage--error">
+                            {% for error in field.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% endblock %}
+
+                    {% block help_text %}
+                        {% if field.help_text %}
+                            <div class="form__fieldMessage">
+                                {# We allow HTML within form help fields #}
+                                {{ field.help_text|safe }}
+                            </div>
+                        {% endif %}
+                    {% endblock %}
+                </div>
+            {% endblock %}
+        </div>
+    {% endblock %}
+{% endif %}

@@ -1,0 +1,26 @@
+{% extends "global/layout.html" %}
+
+{% load i18n %}
+
+{% block content %}
+    <section class="connect connect--page">
+        <div class="container">
+            <div class="cols cols--m-2">
+                <div class="col connect__option connect__option--register" style="margin: 0 auto;">
+                    <div>
+                        <div class="connect__optionHeader">
+                            <h2 class="title title--small">{% trans "Welcome to the Unlabel Creator App!" %}</h2>
+                        </div>
+                        <!-- <p>{# trans "Creating an account is simple and easy. An account will allow you to follow brands updates, add products to your wishlist, manage your personal details and more. Follow the next quick steps to set up your account today." #}</p> -->
+                    </div>
+                    <div class="connect__optionFooter">
+                        <a href="{% url 'brand_signup' %}" class="cta cta--block">{% trans "Brand Signup" %}</a>
+                    </div>
+                    <div class="connect__optionFooter">
+                        <a href="{% url 'login' %}" class="cta cta--dark cta--block">{% trans "Login" %}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

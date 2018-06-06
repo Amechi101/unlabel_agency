@@ -1,0 +1,52 @@
+{% extends "dashboard/creators/dashboard.html" %}
+
+{% load cloudinary %} 
+{% load i18n %}
+
+
+{% block grid_header_titleContent %}
+    <h2 class="title title--small">{% trans "Selected Products" %}</h2>
+{% endblock %}
+
+{% block grid_header_results %}
+   <div>
+    {% if selected_products_obj|length > 1 %}
+
+        <strong>{{selected_products_obj.count}}</strong>&nbsp;{% trans 'products' %}
+
+    {% elif selected_products_obj|length == 1 %}
+   
+        <strong>{{selected_products_obj.count}}</strong>&nbsp;{% trans 'product' %}
+    
+
+    {% else %}
+
+        <strong>{{selected_products_obj.count}}</strong>&nbsp;{% trans 'products' %}
+    
+    {% endif %}
+</div>
+{% endblock %}
+
+{% block content %}
+    {% if selected_products_obj %}
+        {% include "dashboard/creators/products/partials/selected_products_gridList.html" %}
+    {% else %}
+        <div class="grid__emptyMessage">
+            <p class="missing">
+                {% blocktrans %}
+                    No selected products
+                {% endblocktrans %}
+            </p>
+        </div>
+    {% endif %}
+{% endblock content %}
+
+{# block after_layout #}
+    {% if products %}
+        <div class="grid__paginationContainer color-context color-context--products">
+            {% include "partials/pagination.html" %}
+        </div>
+    {% endif %}
+{# endblock after_layout #}
+
+

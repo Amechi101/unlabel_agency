@@ -1,0 +1,82 @@
+{% extends "dashboard/brands/base_dashboard.html" %}
+
+{% load i18n %}
+{% load cloudinary %} 
+
+{% block content %}
+	<form id="profile_form" class="form form--stacked" method="post" enctype="multipart/form-data">
+		<div class="container container--medium container--left container--pad48Bottom">
+			{% csrf_token %}
+			{% include "partials/form_errors.html" %}
+			<div class="form__row">
+            	{% include 'partials/form_field.html' with field=form.name %}
+            </div>
+            <div class="form__row">
+            	{% include 'partials/form_field.html' with field=form.description %}
+            </div>
+            <div class="form__row">
+            	{% include 'partials/form_field.html' with field=form.image %}
+            	{% for data in brand_data %}
+            		<img width="200" height="200" src="{% cloudinary_url data.image %}" alt="{{ data.name }}" />
+            	{% endfor %}
+            </div>
+            <div class="form__row">
+            	{% include 'partials/form_field.html' with field=form.website %}
+            </div>
+            <div class="form__row">
+            	{% include 'partials/form_field.html' with field=form.city %}
+            </div>
+            <div id="id_us_state_field" class="form__row">
+            	{% include 'partials/form_field.html' with field=form.state %}
+            </div>
+            <div class="form__row">
+            	{% include 'partials/form_field.html' with field=form.country %}
+            </div>
+            <div class="form__row">
+            	{% include 'partials/form_field.html' with field=form.selling_categories %}
+            </div>
+            <div class="form__row">
+            	{% include 'partials/form_field.html' with field=form.audience %}
+            </div>
+            {% include "partials/form_errors.html" %}
+		</div>
+		<hr>
+		<div class="container container--medium container--left container--pad24">
+			<button class="cta cta--dark" type="submit" id="id_save_button">{% trans "Save Changes" %}</button>
+		</div>
+	</form>
+	<div class="u-mobile-only">
+		<hr>
+		<div class="container container--pad24 container--medium container--left">
+			<a href="{% url 'logout' %}" class="link">{% trans 'Sign out' %}</a>
+		</div>
+	</div>
+{% endblock content %}
+
+{% block extrascripts %}
+	<script>
+		;(function($) {
+    		$(function() {
+		        var selectField = $('select#id_country'),
+		            verified = $('#id_us_state_field');
+
+		        function toggleVerified(value) {
+		            if (value === 'US') {
+		                verified.show();
+		            } else {
+		                verified.hide();
+		                $('#id_us_state_field select').prop('selectedIndex', 0);
+		            }
+		        }
+
+		        // show/hide on load based on pervious value of selectField
+		        toggleVerified(selectField.val());
+
+		        // show/hide on change
+		        selectField.change(function() {
+		            toggleVerified($(this).val());
+		        });
+    		});
+		})(jQuery);
+	</script>
+{% endblock extrascripts %}

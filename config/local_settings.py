@@ -35,7 +35,7 @@ CACHES = {
 DATABASES = {
     'default': {
 	'ENGINE': 'django.db.backends.postgresql',
-	'NAME': 'unlabel',
+	'NAME': 'unlabel_agency',
 	'USER': 'amechiegbe',
 	'PASSWORD': '',
 	'HOST': 'localhost',

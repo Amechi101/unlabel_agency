@@ -1,18 +1,17 @@
 {% load i18n %}
 
 <div>
-	{% if selected_products_obj|length > 0 %}
-
-	    <strong>{{selected_products_obj.count}}</strong>&nbsp;{% trans 'products' %}
-
-	{% elif selected_products_obj == 1 %}
-	{{selected_products_obj|length}}
-	    <strong>{{selected_products_obj.count}}</strong>&nbsp;{% trans 'product' %}
-	
-
-	{% else %}
-	{{selected_products_obj|length}}
-		<strong>{{selected_products_obj.count}}</strong>&nbsp;{% trans 'products' %}
-	
-	{% endif %}
+	{% with result_type_singular|default:'result' as result_type_singular and result_type_plural|default:'results' as result_type_plural %}
+	    {% if paginator.count %}
+	        {% blocktrans count num_results=paginator.count %}
+	            <strong>{{ num_results }}</strong>&nbsp;{{result_type_singular}}
+	        {% plural %}
+	            <strong>{{ num_results }}</strong>&nbsp;{{result_type_plural}}
+	        {% endblocktrans %}
+	    {% else %}
+	    	{% blocktrans %}
+	        	<strong>0</strong>&nbsp;{{result_type_plural}}
+	        {% endblocktrans %}
+	    {% endif %}
+    {% endwith %}
 </div>

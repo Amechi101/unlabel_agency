@@ -1,26 +1,200 @@
 {% extends "global/layout.html" %}
 
 {% load i18n %}
+{% load static %}
+{% load cloudinary %}
+{% load thumbnail %} 
 
 {% block content %}
-    <section class="connect connect--page">
+    <section class="home__header">
         <div class="container">
-            <div class="cols cols--m-2">
-                <div class="col connect__option connect__option--register" style="margin: 0 auto;">
-                    <div>
-                        <div class="connect__optionHeader">
-                            <h2 class="title title--small">{% trans "Welcome to the Unlabel Creator App!" %}</h2>
-                        </div>
-                        <!-- <p>{# trans "Creating an account is simple and easy. An account will allow you to follow brands updates, add products to your wishlist, manage your personal details and more. Follow the next quick steps to set up your account today." #}</p> -->
-                    </div>
-                    <div class="connect__optionFooter">
-                        <a href="{% url 'brand_signup' %}" class="cta cta--block">{% trans "Brand Signup" %}</a>
-                    </div>
-                    <div class="connect__optionFooter">
-                        <a href="{% url 'login' %}" class="cta cta--dark cta--block">{% trans "Login" %}</a>
+            <div class="home__headerWrapper">
+                <div class="visual visual--wideLandscape">
+                    <img src="{% static 'unlabel/dist/img/temp/home-visual.jpg' %}" alt="{% trans 'Header header visual' %}">
+                </div>
+                <div class="home__headerTitleContainer">
+                    <h2 class="title title--headline">
+                        <span class="u-block">Unla</span>
+                        <span class="u-block">bel<span class="logo"><span class="logo__icon"><img src="{% static 'unlabel/dist/img/logo_dark.svg' %}" alt="{% trans 'Unlabel Logo' %}"></span></span>
+                        </span>
+                    </h2>
+                </div>
+                <div class="cols cols--m home__headerCols">
+                    <div class="col home__headerIntroContainer">
+                        <p class="title title--medium">{% trans 'We are a digital agency focused on driving growth and forging creative partnerships for fashion, lifestyle &amp; retail brands.' %}</p>
                     </div>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <section class="home__creators color-context color-context--creators">
+
+        <div class="home__CreatorsBg"></div>
+
+        <div class="container">
+            <div class="home__creatorsCols">
+                <div class="home__creatorsCol home__creatorsCol--left">
+                    {% for project in projects_left %}
+                        <article class="home_creatorGridItem">
+                            <a href="{% url 'projects:project_detail' project.slug %}" class="u-block" title="{{ project.title }}">
+                                <figure>
+                                    <div class="img-container img-container--portrait">
+                                        <img src="{% cloudinary_url project.cover_image %}" alt="{{ project.title }}" />
+                                    </div>
+                                    <figcaption>
+                                        <h3>{{ project.title }}</h3>
+                                        <p><small>{{ project.client_name }}</small></p>
+                                    </figcaption>
+                                </figure>
+                            </a>
+                        </article>
+                    {% endfor %}
+                    <div class="home__creatorsTitleContainer">
+                        <h2 class="title title--caps">{% trans 'Recent<br> Work' %}</h2>
+                    </div>
+                    <div class="home__creatorsCtaContainer">
+                        <a class="cta cta--dark" href="{% url 'projects:projects' %}">{% trans 'View All Work' %}</a>
+                    </div>
+                    <div class="home__creatorsSubtitleContainer">
+                        <div class="subtitle subtitle--medium home_creatorGridItem">{% trans 'Every project is selected with care and completed with quality, style and uniqueness to fit our clients needs.' %}</div>
+                    </div>
+                </div>
+                <div class="home__creatorsCol home__creatorsCol--middle">
+                    {% for project in projects_middle %}
+                        <article class="home_creatorGridItem">
+                            <a href="{% url 'projects:project_detail' project.slug %}" class="u-block">
+                                <figure>
+                                    <div class="img-container img-container--portrait">
+                                        <img src="{% cloudinary_url project.cover_image %}" alt="{{ project.title }}" />
+                                    </div>
+                                    <figcaption>
+                                        <h3>{{ project.title }}</h3>
+                                        <p><small>{{ project.client_name }}</small></p>
+                                    </figcaption>
+                                </figure>
+                            </a>
+                        </article>
+                    {% endfor %}
+                </div>
+                <div class="home__creatorsCol home__creatorsCol--right u-desktop-only">
+                    {% for project in projects_right %}
+                        <article class="home_creatorGridItem">
+                            <a href="{% url 'projects:project_detail' project.slug %}" class="u-block">
+                                <figure>
+                                    <div class="img-container img-container--portrait">
+                                        <img src="{% cloudinary_url project.cover_image %}" alt="{{ project.title }}" />
+                                    </div>
+                                    <figcaption>
+                                        <h3>{{ project.title }}</h3>
+                                        <p><small>{{ project.client_name }}</small></p>
+                                    </figcaption>
+                                </figure>
+                            </a>
+                        </article>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="home__brands color-context color-context--brands">
+        <div class="container">
+            <h2 class="home__brandsTitle title title--caps">{% trans 'Our<br class="u-desktop-only"/> Clients' %}</h2>
+
+            <div class="home__brandsCarousel carousel">
+                <div class="cols cols--m cols--align-left cols--align-top">
+                    <div class="col brands__carouselColLeft">
+                        <div class="swiper-container carousel_visualsSlider home__brandsVisualsSlider">
+                            <div class="swiper-wrapper">
+                                {% for client in clients %}
+                                    <div class="swiper-slide">
+                                        <div class="visual visual--landscape">
+                                            <img src="{% cloudinary_url client.image %}" alt="{{ client.name }}">
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col brands__carouselColRight">
+                        <div class="swiper-container carousel__backgroundsSlider home__brandsBgsSlider">
+                            <div class="swiper-wrapper">
+                                {% for client in clients %}
+                                    <div class="swiper-slide">
+                                        <div class="carousel__bgSlide" style="background-color: {% cycle '#EDDDDD' '#DEEDEE' '#DDE0ED' '#F5E5D9' %};"></div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <div class="home__brandsCarouselContentWrapper">
+                            <div class="swiper-container carousel_contentsSlider home__brandsContentsSlider">
+                                <div class="swiper-wrapper">
+                                    {% for client in clients %}
+                                        <div class="swiper-slide">
+                                            <h3 class="carousel_contentItem subtitle">{{ client.name|default:'Name' }}</h3>
+                                            <div class="carousel__contentItem desc desc--small">{{ client.description|default:'Description' }}</div>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            <div class="home__brandsCarouselNav">
+                                <a class="carousel__btn carousel__btn--prev" href="#prev"><span class="fonticon fonticon--smallBox fonticon--carouselArrowLeft"></span></a><a class="carousel__btn carousel__btn--next" href="#next"><span class="fonticon fonticon--smallBox fonticon--carouselArrowRight"></span></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <nav class="home__brandsNav">
+                <ul class="home__brandsNavList">
+                    <li class="home__brandsNavItem">
+                        <a href="{% url 'clients:client_list' %}" class="cta cta--dark">{% trans 'View Client List' %}</a>
+                    </li>
+                </ul>
+            </nav>
+
+        </div>
+    </section>
+
+    <section class="home__story">
+        <div class="container">
+            <div class="home__storyWrapper">
+                <h2 class="subtitle">{% trans 'What we are' %}</h2>
+                <div class="desc home__storyDesc">{% trans 'Nullam maximus faucibus volutpat. Morbi ut erat nunc. Nulla cursus erat vitae dui dictum facilisis. Maecenas vel erat orci. Cras fringilla nunc in nibh tempor, et feugiat quam pellentesque.<br>Vivamus blandit bibendum pellentesque. Cras imperdiet commodo diam at hendrerit. Vivamus at semper erat, vel interdum lectus. Proin sagittis est sed interdum finibus. Suspendisse id vulputate est. Cras sed ligula nec nisl vehicula ultricies.' %}</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="home__products color-context color-context--products">
+        <div class="container">
+            <h2 class="title title--caps home__productsTitle">{%trans 'Lastest<br>News' %}</h2>
+        </div>
+        <div class="grid2 home__productsGrid">
+            <ol class="grid2__list">
+                {% for article in articles %}
+                    <li class="grid2__item">
+                        <article>
+                            <div class="grid__itemInner">
+                                <a class="u-block" href="{% url 'articles:article_detail' article.slug %}" title="{{ article.title }}">
+                                    <figure>
+                                        {% block product_image %}
+                                            <div class="img-container img-container--square">
+                                                <img src="{% cloudinary_url article.image THUMBNAIL %}" alt="{{ article.name }}" >
+                                            </div>
+                                        {% endblock %}
+                                        <figcaption>
+                                            <h2>{{ article.title }}</h2>
+                                            <h3>
+                                                <small>{% trans 'by' %} {{ article.author }}</small>
+                                            </h3>    
+                                        </figcaption>
+                                    </figure>
+                                </a>
+                            </div>
+                        </article>
+                    </li>
+                {% endfor %}
+            </ol>
         </div>
     </section>
 {% endblock %}

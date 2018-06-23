@@ -1,0 +1,56 @@
+{% extends "global/layout.html" %}
+
+{% load i18n %}
+{% load staticfiles %}
+{% load cloudinary %}
+
+{% block content_classnames %}color-context color-context--brands{% endblock %}
+
+{% block content %}
+    <section class="invite__header">
+        <div class="container">
+            <div class="invite__headerWrapper">
+                <div class="invite__headerTitleContainer">
+                    <h1 class="title title--caps">{{ project.title }}</h1>
+                </div>
+                <div class="invite__headerVisualContainer">
+                    <img src="{% cloudinary_url project.cover_image %}" alt="{{ project.ttile }}">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="invite__descContainer">
+        <div class="container container--medium">
+            <div class="desc">
+                {{ project.description|safe }} 
+            </div>
+        </div>
+    </section>
+
+    <section class="invite__contact">
+      <div class="container container--medium">
+            <p class="invite__contactWrapper">
+                <span class="invite__contactLabel">Unlabel provided: {{project.services}}</span>
+          </p>
+      </div>
+    </section>
+
+    <section class="home__header">
+        <div class="container">
+            {% for images in project_images %}
+                <div class="home__headerWrapper">
+                    <div class="visual">
+                        <img src="{% cloudinary_url images.image %}" alt="{{ project.title }}">
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </section>
+   
+    {% trans "More Projects" as triptych_title %}
+    {% include "projects/partials/project_detail_triptych.html" with triptych_title=triptych_title triptych_isWrapperWider=True %}
+
+{% endblock content %}
+
+{% block extrascripts %}{% endblock extrascripts %}

@@ -1,9 +1,7 @@
-Django==2.0.1
 certifi==2018.1.18
 cloudinary==1.11.0
-django-crispy-forms==1.7.0
+Django==2.0.1
 django-multiselectfield==0.1.8
-django-widget-tweaks==1.4.2
 mock==2.0.0
 pbr==3.1.1
 psycopg2==2.7.4

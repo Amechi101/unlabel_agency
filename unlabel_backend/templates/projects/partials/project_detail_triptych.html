@@ -1,0 +1,23 @@
+{% extends "partials/triptych.html" %}
+{% load staticfiles %}
+{% load cloudinary %}
+
+{% block triptych_content %}
+	<ul class="cols cols--m-3">
+		{% for project in projects_triptych %}
+			<li class="col">
+				<a href="{% url 'projects:project_detail' project.slug %}" class="triptych__itemLink">
+					<figure>
+						<div class="img-container img-container--portrait">
+	                        <img src="{% cloudinary_url project.image %}" alt="{{ project.title }}">
+						</div>
+						<figcaption>
+							<p>{{ project.title }}</p>
+							<p><small>{{ project.client_title }}</small></p>
+						</figcaption>
+					</figure>
+				</a>
+			</li>
+		{% endfor %}
+	</ul>
+{% endblock %}

@@ -382,42 +382,17 @@ INDUSTRIES = (
 )
 INDUSTRIES_CHOICES = tuple(sorted(INDUSTRIES, key=lambda industires: industires[1]))
 
-# Sex
-# ------------------------------------------------------------------------------
-SEX = (
-    ('MALE', _('Male')),
-    ('FEMALE', _('Female')),
-)
-SEX_CHOICES = tuple(sorted(SEX, key=lambda sex: sex[1]))
-
-# Size Code
-# ------------------------------------------------------------------------------
-PRODUCT_SIZE_CODE = (
-    ('XXXS', _('xxxs')),
-    ('XXS', _('xxs')),
-    ('XS', _('xs')),
-    ('S', _('s')),
-    ('M', _('m')),
-    ('L', _('l')),
-    ('XL', _('xl')),
-    ('XXL', _('xxl')),
-    ('XXXL', _('xxxl')),
-)
-PRODUCT_SIZE_CODE_CHOICES = tuple(sorted(PRODUCT_SIZE_CODE, key=lambda product_size_code: product_size_code[1]))
 
 # PRODUCT CATEGORIES
 # ------------------------------------------------------------------------------
-PRODUCT_CATEGORIES = (
-    (1, _('Clothing')),
-    (2, _('Accessories')),
-    (3, _('Jewelry')),
-    (4, _('Bags')),
-    (5, _('Footwear')),
-    (6, _('Denim')),
-    (7, _('Eyewear')),
-    (8, _('Intimates')),
-    (9, _('Swimwear')),
-    (10, _('Lifestyle + Objects')),
+SERVICES = (
+    ('TEC', _('Technology')),
+    ('SAL', _('Sales')),
+    ('COC', _('Content Creation')),
+    ('DES', _('Design')),
+    ('CON', _('Consulation')),
+    ('STR', _('Strategy')),
+    ('INF', _('Influence')),
 )
-PRODUCT_CATEGORY_CHOICES = tuple(sorted(PRODUCT_CATEGORIES, key=lambda categories: categories[1]))
+SERVICES_CHOICES = tuple(sorted(SERVICES, key=lambda services: services[1]))
  

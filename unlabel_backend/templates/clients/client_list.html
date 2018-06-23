@@ -1,0 +1,70 @@
+{% extends "global/layout_2_col.html" %}
+{% load i18n %}
+{% load cloudinary %}
+
+{% block body_class %}brands{% endblock %}
+
+{% block before_layout %}
+  {% trans "Our Cli- ents" as triptych_title %}
+  {% include "clients/partials/client_triptych.html" with triptych_title=triptych_title triptych_isBigTitle=True triptych_isWrapperThinner=True triptych_isContentDesktopOnly=True %}
+{% endblock before_layout %}
+
+{% block content_classnames %}color-context color-context--brands{% endblock %}
+
+{% block layout_sidebar_extra_classnames %}u-desktop-only{% endblock %}
+
+{% block column_left %}{% endblock column_left %}
+
+{% block grid_header_filters %}{% endblock %}
+
+{% block grid_header_sortBy %}{% endblock %}
+
+{% block grid_header_results %}
+    <div>
+        {% with result_type_singular|default:'result' as result_type_singular and result_type_plural|default:'results' as result_type_plural %}
+            {% if clients|length > 1 %}
+                {% blocktrans count num_results=clients|length %}
+                    <strong>{{ num_results }}</strong>&nbsp;{{result_type_singular}}
+                {% plural %}
+                    <strong>{{ num_results }}</strong>&nbsp;{{result_type_plural}}
+                {% endblocktrans %}
+            {% else %}
+                {% blocktrans %}
+                    <strong>0</strong>&nbsp;{{result_type_plural}}
+                {% endblocktrans %}
+            {% endif %}
+        {% endwith %}
+    </div>
+{% endblock %}
+
+{% block content %}
+   {% if clients %}
+       <ol class="grid__list color-context color-context--brands">
+            {% for client in clients %}
+                <li class="grid__item grid__item--m-2 grid__item--l-3 grid__item--xl-4">
+                    <article>
+                        <div class="grid__itemInner">
+                            <a class="u-block" href="{% url 'clients:client_detail' client.slug %}" title="{{ client.name }}">
+                                <figure>
+                                    <div class="img-container img-container--landscape">
+                                        <img src="{% cloudinary_url client.image %}" alt="{{ client.name }}">
+                                    </div>
+                                    <figcaption>
+                                        <h2>{{ client.name }}</h2>
+                                        <p>{{ client.city }}, {% if client.state %}{{ client.state }},{% endif %} {{ client.get_country_display }}</p>
+                                    </figcaption>
+                                </figure>
+                            </a>
+                        </div>
+                    </article>
+                </li>
+            {% endfor %}
+        </ol>
+    {% else %}
+        <div class="grid__emptyMessage">
+            <p class="missing">{% trans "Clients coming soon!" %}</p>
+        </div>
+    {% endif %}
+
+{% endblock content %}
+

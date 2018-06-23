@@ -4609,7 +4609,7 @@ html.no-js .header_submenuToggler:hover .header__submenu {
 }
 @media (max-width: 767px) {
   .home_creatorGridItem img {
-    max-width: 114px;
+    max-width: 100%;
   }
 }
 @media (min-width: 768px) {
@@ -4950,12 +4950,14 @@ a:hover .img-container img {
     margin-left: -56px;
   }
 }
+
+/* @Amechi */
 .layout--1col .layout__header {
-  padding: 24px 0;
+  padding: 24px 32px;
 }
 @media (min-width: 768px) {
   .layout--1col .layout__header {
-    padding: 32px 0;
+    padding: 32px 24px;
   }
 }
 .link {

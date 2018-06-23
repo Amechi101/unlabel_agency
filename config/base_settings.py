@@ -45,12 +45,10 @@ INSTALLED_APPS = [
     'django.contrib.humanize',
     'django.contrib.admin',
 
-    'crispy_forms',
     'cloudinary',
+    'unlabel_backend',
     'multiselectfield',
-    'widget_tweaks',
-
-    'uccbackend',
+    'sorl.thumbnail',
 ]
 
 MIDDLEWARE = [
@@ -78,6 +76,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'config.context_processors.consts',
             ],
         },
     },
@@ -113,15 +112,15 @@ STATICFILES_DIRS = [
 
 # Custom Django auth settings
 
-AUTH_USER_MODEL = 'uccbackend.User'
+# AUTH_USER_MODEL = 'backend.User'
 
-LOGIN_URL = 'login'
+# LOGIN_URL = 'login'
 
-LOGOUT_URL = 'logout'
+# LOGOUT_URL = 'logout'
 
-LOGIN_REDIRECT_URL = 'home'
+# LOGIN_REDIRECT_URL = 'home'
 
-LOGOUT_REDIRECT_URL = 'home'
+# LOGOUT_REDIRECT_URL = 'home'
 
 
 # Messages built-in framework

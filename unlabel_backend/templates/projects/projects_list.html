@@ -1,0 +1,91 @@
+{% extends "global/layout_2_col.html" %}
+
+{% load staticfiles %}
+{% load i18n %}
+{% load cloudinary %}
+
+{% block body_class %}creators{% endblock %}
+
+{% block before_layout %}
+    {% trans "Our Work" as triptych_title %}
+    {% include "projects/partials/projects_triptych.html" with triptych_title=triptych_title triptych_isBigTitle=True triptych_isWrapperThinner=True triptych_isContentDesktopOnly=True %}
+{% endblock before_layout %}
+
+{% block content_classnames %}color-context color-context--creators{% endblock %}
+
+{% block layout_sidebar_extra_classnames %}u-desktop-only{% endblock %}
+
+{% block column_left %}{% endblock column_left %}
+
+{% block grid_header_filters %}{% endblock %}
+
+{% block grid_header_sortBy %}{% endblock %}
+
+{% block grid_header_results %}
+    <div>
+        {% with result_type_singular|default:'result' as result_type_singular and result_type_plural|default:'results' as result_type_plural %}
+            {% if projects|length > 1 %}
+                {% blocktrans count num_results=projects|length %}
+                    <strong>{{ num_results }}</strong>&nbsp;{{result_type_singular}}
+                {% plural %}
+                    <strong>{{ num_results }}</strong>&nbsp;{{result_type_plural}}
+                {% endblocktrans %}
+            {% else %}
+                {% blocktrans %}
+                    <strong>0</strong>&nbsp;{{result_type_plural}}
+                {% endblocktrans %}
+            {% endif %}
+        {% endwith %}
+    </div>
+{% endblock %}
+
+{% block content %}
+    {% if projects %}
+        {% include "projects/partials/projects_gridList.html" %}
+    {% else %}
+      <div class="grid__emptyMessage">
+        <p class="missing">{% trans "Projects Coming Soon!" %}</p>
+      </div>
+    {% endif %}
+{% endblock content %}
+
+{% block after_layout %}
+    {# TODO : make pagination work with partial then remove this #}
+    <!-- <div class="pagination">
+        <span class="step-links">
+            {% if influencers.has_previous %}
+                <a href="?page={{ influencers.previous_page_number }}">previous</a>
+            {% endif %}
+
+            <span class="current">
+                Page {{ influencers.number }} of {{ influencers.paginator.num_pages }}.
+            </span>
+
+            {% if influencers.has_next %}
+                <a href="?page={{ influencers.next_page_number }}">next</a>
+            {% endif %}
+        </span>
+    </div> -->
+    {% comment %}
+    <div class="grid__paginationContainer">
+        {% include "partials/pagination.html" %}
+    </div>
+    {% endcomment %}
+{% endblock %}
+
+
+{% block extrascripts %}{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -6,7 +6,7 @@
     <nav class="pagination">
         <ul class="pagination__list">
             {% for page in page_obj.paginator.page_range %}
-                <li class="pagination__item {% if page_obj.number == page  %}is-active{% endif %}"><a class="pagination__link" href="?{% get_parameters page %}page={{ page }}">{{ page }}</a></li>
+                <li class="pagination__item {% if page_obj.number == page  %}is-active{% endif %}"><a class="pagination__link" href="?page={{ page }}">{{ page }}</a></li>
             {% endfor %}
         </ul>
     </nav>

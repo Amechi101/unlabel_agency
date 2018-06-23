@@ -1,0 +1,65 @@
+{% extends "global/layout_2_col.html" %}
+{% load i18n %}
+{% load cloudinary %}
+
+
+{% block body_class %}brand{% endblock %}
+
+{% block before_layout %}
+    <div class="container container--pad">
+        <div class="cols cols--m-2 cols--m-gutter32">
+            <div class="col brand__overviewCol">
+                <figure>
+                    <div class="img-container img-container--landscape">
+                        <img src="{% cloudinary_url client.image %}" alt="{{ client.name }}">
+                    </div>
+                </figure>
+            </div>
+            <div class="col brand__overviewCol brand__overviewCol--info">
+                <div class="brand__infoHeader">
+                    <h2 class="title">{{ client.name }}</h2>
+                    <p class="brand__location">{{ client.city }}, {% if client.state %}{{ client.state }},{% endif %} {{ client.get_country_display }}</p>
+                </div>
+                <div class="brand__infoContent">
+                    <div class="brand__followForm">
+                        <a class="cta cta--dark" href="{{ client.url }}" target="_blank">View Website</a>
+                            
+                    </div>
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock before_layout %}
+
+{% block layout_sidebar_extra_style %}style="width: 50%; margin: 0 auto;"{% endblock %}
+
+
+            
+                {% block grid_header%}
+                   
+                {% endblock %}
+
+{% block column_left %}
+    <div class="grid__sidebarWidget">
+        {{ client.description }}
+    </div>
+
+    <div class="grid__sidebarWidget">
+        {% include "partials/share_menu.html" %}
+    </div>
+{% endblock column_left %}
+
+{% block grid_header_filters %}{% endblock %}
+
+{% block grid_header_sortBy %}{% endblock %}
+
+{% block grid_header_results %}{% endblock %}
+
+{% block content_classnames %}color-context color-context--brand{% endblock %}
+
+{% block grid %}
+{% endblock grid %}
+
+{% block extrascripts %}{% endblock %}
+

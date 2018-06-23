@@ -4,6 +4,11 @@
 {% load staticfiles %}
 {% load cloudinary %}
 
+
+{% block title %}
+    {{ project.title }} | {{ block.super }}
+{% endblock %}
+
 {% block content_classnames %}color-context color-context--brands{% endblock %}
 
 {% block content %}

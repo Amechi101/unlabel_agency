@@ -2,6 +2,10 @@
 {% load i18n %}
 {% load cloudinary %}
 
+{% block title %}
+    {{ client.name }} | {{ block.super }}
+{% endblock %}
+
 
 {% block body_class %}brand{% endblock %}
 

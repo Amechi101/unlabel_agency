@@ -3,6 +3,10 @@
 {% load staticfiles %}
 {% load cloudinary %}
 
+{% block title %}
+    {% trans 'About' %} | {{ block.super }}
+{% endblock %}
+
 {% block content %}
 
 <div class="about">

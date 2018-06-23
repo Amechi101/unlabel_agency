@@ -1,9 +1,12 @@
-from .base_settings import *
-
 import dj_database_url
 
-# DEBUG = False
-DEBUG = True
+from .base_settings import *
+
+DEBUG = False
+
+ALLOWED_HOSTS = ['*']
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'assets')
 
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')

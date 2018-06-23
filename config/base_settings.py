@@ -32,7 +32,7 @@ cloudinary.config(
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'd$pxg6fisc4iwzk&vz^s_d0lkf&k63l5a8f!obktw!jg#4zvp3'
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['']
 
 # Application definition
 
@@ -101,8 +101,6 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
-
-STATIC_ROOT = os.path.join(BASE_DIR, 'assets')
 
 STATIC_URL = '/static/'
 

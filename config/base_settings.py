@@ -48,7 +48,6 @@ INSTALLED_APPS = [
     'cloudinary',
     'unlabel_backend',
     'multiselectfield',
-    'sorl.thumbnail',
 ]
 
 MIDDLEWARE = [

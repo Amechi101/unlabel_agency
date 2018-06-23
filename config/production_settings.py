@@ -1,4 +1,6 @@
-from unlabel.base_settings import *
+from .base_settings import *
+
+import dj_database_url
 
 # DEBUG = False
 DEBUG = True
@@ -21,20 +23,12 @@ CSRF_COOKIE_HTTPONLY = True
 X_FRAME_OPTIONS = 'DENY'
 
 DATABASES = {
-   'default': {
-       'ENGINE': 'django.db.backends.postgresql_psycopg2',
-       'NAME': 'unlabel_dev',
-       'USER': 'prod',
-       'PASSWORD': 'prod',
-       'HOST': '127.0.0.1',
-       'PORT': '5432',
-   }
+   'default': dj_database_url.config(default='postgres://jgdavlmmmlhymo:c257c5c9e7e944e994844c0e751cc02d9783f92c03a8cd34e557d40e6ad5875b@ec2-54-83-0-158.compute-1.amazonaws.com:5432/d5hjg8s9358vsu')
 }
 
 CACHES = {
     'default': {
         'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
-        'LOCATION': '127.0.0.1:11211',
         'TIMEOUT': 60
     }
 }

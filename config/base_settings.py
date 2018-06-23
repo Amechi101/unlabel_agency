@@ -32,7 +32,7 @@ cloudinary.config(
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'd$pxg6fisc4iwzk&vz^s_d0lkf&k63l5a8f!obktw!jg#4zvp3'
 
-ALLOWED_HOSTS = ['']
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 

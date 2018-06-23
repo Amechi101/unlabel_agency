@@ -4,9 +4,9 @@ from .base_settings import *
 
 DEBUG = False
 
-ALLOWED_HOSTS = ['*']
-
 STATIC_ROOT = os.path.join(BASE_DIR, 'unlabel', 'static')
+
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')

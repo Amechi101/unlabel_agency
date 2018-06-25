@@ -80,7 +80,7 @@
             {% for images in project_images %}
                 <div class="home__headerWrapper js-scroll js-scroll-mask js-scroll-mask-right" data-speed="1">
                     <div class="visual">
-                        <img src="{% cloudinary_url images.image %}" alt="{{ project.title }}">
+                        <img src="{% cloudinary_url images.image GENERAL_IMAGES %}" alt="{{ project.title }}">
                     </div>
                 </div>
             {% endfor %}

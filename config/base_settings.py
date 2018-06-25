@@ -35,8 +35,9 @@ SECRET_KEY = 'd$pxg6fisc4iwzk&vz^s_d0lkf&k63l5a8f!obktw!jg#4zvp3'
 ALLOWED_HOSTS = ['*']
 
 # Application definition
-
-INSTALLED_APPS = [
+# APP CONFIGURATION
+# ------------------------------------------------------------------------------
+DJANGO_APPS = [
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -44,11 +45,18 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.humanize',
     'django.contrib.admin',
-
-    'cloudinary',
-    'unlabel_backend',
-    'multiselectfield',
 ]
+
+THIRD_PARTY_APPS = [
+    'multiselectfield',
+    'cloudinary',
+]
+
+LOCAL_APPS = [
+    'unlabel_backend.apps.UnlabelBackend',
+]
+
+INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

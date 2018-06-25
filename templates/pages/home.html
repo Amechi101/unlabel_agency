@@ -52,7 +52,7 @@
                             <a href="{% url 'projects:project_detail' project.slug %}" class="u-block" title="{{ project.title }}">
                                 <figure>
                                     <div class="img-container img-container--portrait">
-                                        <img src="{% cloudinary_url project.cover_image %}" alt="{{ project.title }}" />
+                                        <img src="{% cloudinary_url project.cover_image GENERAL_IMAGES %}" alt="{{ project.title }}" />
                                     </div>
                                     <figcaption>
                                         <h3>{{ project.title }}</h3>
@@ -78,7 +78,7 @@
                             <a href="{% url 'projects:project_detail' project.slug %}" class="u-block">
                                 <figure>
                                     <div class="img-container img-container--portrait">
-                                        <img src="{% cloudinary_url project.cover_image %}" alt="{{ project.title }}" />
+                                        <img src="{% cloudinary_url project.cover_image GENERAL_IMAGES %}" alt="{{ project.title }}" />
                                     </div>
                                     <figcaption>
                                         <h3>{{ project.title }}</h3>
@@ -95,7 +95,7 @@
                             <a href="{% url 'projects:project_detail' project.slug %}" class="u-block">
                                 <figure>
                                     <div class="img-container img-container--portrait">
-                                        <img src="{% cloudinary_url project.cover_image %}" alt="{{ project.title }}" />
+                                        <img src="{% cloudinary_url project.cover_image GENERAL_IMAGES %}" alt="{{ project.title }}" />
                                     </div>
                                     <figcaption>
                                         <h3>{{ project.title }}</h3>
@@ -122,7 +122,7 @@
                                 {% for client in clients %}
                                     <div class="swiper-slide js-scroll" data-speed="2">
                                         <div class="visual visual--landscape">
-                                            <img src="{% cloudinary_url client.image %}" alt="{{ client.name }}">
+                                            <img src="{% cloudinary_url client.image GENERAL_IMAGES %}" alt="{{ client.name }}">
                                         </div>
                                     </div>
                                 {% endfor %}

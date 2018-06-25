@@ -9,10 +9,17 @@ def consts(request):
                 dict(angle=10),
             ]
         ),
-        THUMBNAIL = {
-            "format": "jpg", 
-            "crop": "fill", 
-            "height": 284, 
-            "width": 284,
-        },
+        THUMBNAIL = dict(
+            format="jpg", 
+            crop="fill", 
+            height=284, 
+            width=284,
+        ),
+        GENERAL_IMAGES = dict(
+            format="jpg", 
+            transformation=[
+                dict(crop="fill", width=1000)
+            ]
+        ),
     )
+

@@ -52,6 +52,7 @@ class Client(TimeModel):
 		verbose_name = _('Client')
 		verbose_name_plural = _('Clients')
 
+
 @python_2_unicode_compatible
 class Project(TimeModel):
     
@@ -122,26 +123,6 @@ class Capability(models.Model):
 		verbose_name_plural = _('Capabilities')
 
 
-
-@python_2_unicode_compatible
-class Product(TimeModel):
-
-	client = models.ForeignKey(Client, on_delete=models.CASCADE,  null=True, blank=True, verbose_name=_('Client'), related_name='products')
-
-	name = models.CharField(max_length=255, null=True, blank=False )
-    
-	image = CloudinaryField('Image', null=True, blank=True)
-
-	def __str__(self):
-		return "Client: {0}".format(self.name)
-
-	# Metadata
-	class Meta: 
-		verbose_name = _('Product')
-		verbose_name_plural = _('Products')
-
-
-
 @python_2_unicode_compatible
 class Article(TimeModel):
 
@@ -169,6 +150,7 @@ class Article(TimeModel):
 		self.full_clean()
 
 		super(Article, self).save(*args, **kwargs)
+
 
 	# Metadata
 	class Meta: 

@@ -8,7 +8,12 @@
     {% trans 'Projects' %} | {{ block.super }}
 {% endblock %}
 
-{% block body_class %}creators{% endblock %}
+{% block social_meta_tags %}
+    {{ block.super }}
+{% endblock %}
+
+{% block body_id %}work{% endblock %}
+{% block body_class %}work{% endblock %}
 
 {% block before_layout %}
     {% trans "Our Work" as triptych_title %}
@@ -26,26 +31,32 @@
 {% block grid_header_sortBy %}{% endblock %}
 
 {% block grid_header_results %}
-    <div>
-        {% with result_type_singular|default:'result' as result_type_singular and result_type_plural|default:'results' as result_type_plural %}
-            {% if projects|length > 1 %}
-                {% blocktrans count num_results=projects|length %}
-                    <strong>{{ num_results }}</strong>&nbsp;{{result_type_singular}}
-                {% plural %}
-                    <strong>{{ num_results }}</strong>&nbsp;{{result_type_plural}}
-                {% endblocktrans %}
-            {% else %}
-                {% blocktrans %}
-                    <strong>0</strong>&nbsp;{{result_type_plural}}
-                {% endblocktrans %}
-            {% endif %}
-        {% endwith %}
-    </div>
+     {% include "partials/number_of_results.html" %}
 {% endblock %}
 
 {% block content %}
     {% if projects %}
-        {% include "projects/partials/projects_gridList.html" %}
+        <ol class="grid__list color-context color-context--creators">
+            {% for project in projects %}
+                <li class="grid__item grid__item--s-2 grid__item--l-3 grid__item--xl-4 grid__item--xxl-5 js-scroll">
+                    <article>
+                        <div class="grid__itemInner">
+                            <a class="u-block" href="{% url 'projects:project_detail' project.slug %}" title="{{ project.title }}">
+                                <figure>
+                                    <div class="img-container img-container--portrait">
+                                        <img src="{% cloudinary_url project.cover_image %}" alt="{{ project.title }}">
+                                    </div>
+                                    <figcaption>
+                                        <h2>{{ project.title }}</h2>
+                                        <p>{{ project.client_name }}</p>
+                                    </figcaption>
+                                </figure>
+                            </a>
+                        </div>
+                    </article>
+                </li>
+            {% endfor %}
+        </ol>
     {% else %}
       <div class="grid__emptyMessage">
         <p class="missing">{% trans "Projects Coming Soon!" %}</p>

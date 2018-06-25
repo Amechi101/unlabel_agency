@@ -9,16 +9,33 @@
     {{ project.title }} | {{ block.super }}
 {% endblock %}
 
+{% block social_meta_tags %}
+    {{ block.super }}
+
+    {% block facebook_extra_tags %}
+        <meta property="og:title" content="{{ project.title }}">
+        <meta property="og:description" content="{{ project.description }}">
+        <meta property="og:image:secure_url" content="{% cloudinary_url project.cover_image %}">
+        <meta property="og:image" content="{% cloudinary_url project.cover_image %}">
+    {% endblock %}
+
+    {% block twitter_extra_tags %}
+        <meta name="twitter:title" content="{{ project.title }}">
+        <meta name="twitter:description" content="{{ project.description }}">
+        <meta name="twitter:image" content="{% cloudinary_url project.cover_image %}">
+    {% endblock %}
+{% endblock %}
+
 {% block content_classnames %}color-context color-context--brands{% endblock %}
 
 {% block content %}
     <section class="invite__header">
         <div class="container">
             <div class="invite__headerWrapper">
-                <div class="invite__headerTitleContainer">
+                <div class="invite__headerTitleContainer js-scroll">
                     <h1 class="title title--caps">{{ project.title }}</h1>
                 </div>
-                <div class="invite__headerVisualContainer">
+                <div class="invite__headerVisualContainer js-scroll" data-speed="2">
                     <img src="{% cloudinary_url project.cover_image %}" alt="{{ project.ttile }}">
                 </div>
             </div>
@@ -26,7 +43,7 @@
     </section>
 
     <section class="invite__descContainer">
-        <div class="container container--medium">
+        <div class="container container--medium js-scroll">
             <div class="desc">
                 {{ project.description|safe }} 
             </div>
@@ -34,17 +51,34 @@
     </section>
 
     <section class="invite__contact">
-      <div class="container container--medium">
-            <p class="invite__contactWrapper">
-                <span class="invite__contactLabel">Unlabel provided: {{project.services}}</span>
-          </p>
-      </div>
+        <div class="container container--medium">
+            <div class="invite__contactWrapper js-scroll">
+                <p class="invite__contactLabel">Unlabel provided: {{project.services}}</p>
+                <div class="share" style="margin-top: 50px;">
+                    <p class="share__title">{% trans 'Share' %}</p>
+                    <ul class="share__list">
+                        <li class="share__item">
+                            <a href="mailto:?subject={{ project.title }}&body={{ project.description }}. View project here: {{ request.build_absolute_uri }}" title="{% trans 'Share by Email' %}"><span class="fonticon fonticon--email fonticon--smallBox"></span></a>
+                        </li>
+                        <li class="share__item">
+                            <a target="_blank" href="https://www.facebook.com/dialog/share?app_id=1421811444777881&display=popup&href={{request.build_absolute_uri}}&redirect_uri={{request.build_absolute_uri}}" title="{% trans 'Share on Facebook' %}"><span class="fonticon fonticon--facebook fonticon--smallBox"></span></a>
+                        </li>
+                        <li class="share__item">
+                            <a target="_blank" href="https://twitter.com/share?url={{ request.build_absolute_uri }}&text={{ project.description }}" title="{% trans 'Share on Twitter' %}"><span class="fonticon fonticon--twitter fonticon--smallBox"></span></a>
+                        </li>
+                        <li class="share__item">
+                            <a target="_blank" href="http://pinterest.com/pin/create/button/?url={{ request.build_absolute_uri }}&description={{ project.description }}" title="{% trans 'Share on Pinterest' %}"><span class="fonticon fonticon--pinterest fonticon--smallBox"></span></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
     </section>
 
     <section class="home__header">
         <div class="container">
             {% for images in project_images %}
-                <div class="home__headerWrapper">
+                <div class="home__headerWrapper js-scroll js-scroll-mask js-scroll-mask-right" data-speed="1">
                     <div class="visual">
                         <img src="{% cloudinary_url images.image %}" alt="{{ project.title }}">
                     </div>

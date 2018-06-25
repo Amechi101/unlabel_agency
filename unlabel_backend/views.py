@@ -15,6 +15,8 @@ class ProjectListView(ListView):
     def get_context_data(self, **kwargs):
         kwargs['projects'] = Project.objects.all().order_by('title')
 
+        kwargs['results_obj'] = Project.objects.all()
+
         kwargs['projects_triptych'] = Project.objects.all().order_by('-created')[0:3]
 
         return super().get_context_data(**kwargs)
@@ -43,6 +45,8 @@ class ClientListView(ListView):
     def get_context_data(self, **kwargs):
         kwargs['clients'] = Client.objects.all().order_by('name')
 
+        kwargs['results_obj'] = Client.objects.all()
+
         kwargs['clients_triptych'] = Client.objects.all().order_by('-created')[0:3]
 
         return super().get_context_data(**kwargs)
@@ -67,6 +71,8 @@ class ArticleListView(ListView):
 
     def get_context_data(self, **kwargs):
         kwargs['articles'] = Article.objects.all().order_by('-created')
+
+        kwargs['results_obj'] = Article.objects.all()
 
         return super().get_context_data(**kwargs)
 

@@ -4,13 +4,13 @@
 <!--[if lt IE 7]>      <html lang="{{ LANGUAGE_CODE|default:"en-gb" }}" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html lang="{{ LANGUAGE_CODE|default:"en-gb" }}" class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html lang="{{ LANGUAGE_CODE|default:"en-gb" }}" class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html lang="{{ LANGUAGE_CODE|default:"en-gb" }}" class="no-js"> <!--<![endif]-->
+<!--[if gt IE 8]><!--> <html lang="{{ LANGUAGE_CODE|default:"en-gb" }}" class="no-js is-smooth-scroll-compatible"> <!--<![endif]-->
     <head>
         <title>{% block title %}Unlabel{% endblock %}</title>
 
         <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
         <meta name="created" content="{% now "jS M Y h:i" %}" />
-        <meta name="description" content="{% block description %}{% endblock %}" />
+        <meta name="description" content="{% block meta_description %}Unlabel is a digital agency focused on driving growth, forging creative partnerships &amp; providing innovative technology solutions for fashion, lifestyle &amp; retail brands.{% endblock %}" />
         <meta name="viewport" content="{% block viewport %}width=device-width{% endblock %}" />
         <meta name="robots" content="NOARCHIVE,NOCACHE" />
 
@@ -45,7 +45,9 @@
         {# Additional CSS - specific to certain pages #}
         {% block extrastyles %}{% endblock %}
 
+
         {% block extrahead %}{% endblock %}
+        {% block social_meta_tags %}{% endblock %}
 
         {% block tracking %}
             {# Default to using Google analytics #}
@@ -56,6 +58,35 @@
     </head>
 
     <body id="{% block body_id %}default{% endblock %}" class="{% block body_class %}default{% endblock %}">
+            <!-- // page loading -->
+            <div class="preloader-wrap pos-f-t-l full-size" data-active="true" data-preloader-on="off">
+                <div class="preloader-bg pos-a full-size"></div>
+                
+                <div class="preloader-elements pos-a">
+                    <div class="title">
+                        <span>U</span>
+                        <span>N</span>
+                        <span>L</span>
+                        <span>A</span>
+                        <span>B</span>
+                        <span>E</span>
+                        <span>L</span>
+                    </div>
+
+                    <div class="text">
+                        <p>Style, Introduced<span>.</span></p>
+                    </div>
+                    <div class="logo">
+                        <img src="https://res.cloudinary.com/hqz2myoz0/image/upload/v1497208776/unlabel-logo-01_isy2pe.svg">
+                    </div>
+                </div>
+            </div>
+            <!--// page loading -->
+
+            <!-- // page sweeper -->
+            <div class="page-sweeper page-sweeper-under pos-f-t-l full-size" data-active="false"><div></div></div>
+            <div class="page-sweeper pos-f-t-l full-size" data-active="false"><div></div></div>
+            <!-- // page sweeper -->
         {# Main content goes in this 'layout' block #}
         {% block layout %}{% endblock %}
 
@@ -67,7 +98,11 @@
 
         {# Local scripts #}
         {% block scripts %}
+            <script src="{% static 'unlabel/dist/js/vendors/locomotiveScroll.js' %}"></script>
+            <script src="{% static 'unlabel/dist/js/vendors/is.js' %}"></script>
             <script src="{% static 'unlabel/dist/js/bundle.js' %}"></script>
+            <script src="{% static 'unlabel/dist/js/vendors/TweenMax.min.js' %}"></script>
+            <script src="{% static 'unlabel/dist/js/custom-animation.js' %}"></script>
         {% endblock %}
 
         {# Additional JS scripts #}

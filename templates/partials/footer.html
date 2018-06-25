@@ -17,7 +17,16 @@
                     <a class="link link--thick link--discrete" href="{% url 'home' %}" title="{% trans 'Home' %}">{% trans 'Home' %}</a>
                 </li>
                 <li>
+                    <a class="link link--thick link--discrete" href="{% url 'projects:projects' %}" title="{% trans 'Work' %}">{% trans 'Work' %}</a>
+                </li>
+                <li>
+                    <a class="link link--thick link--discrete" href="{% url 'clients:client_list' %}" title="{% trans 'Clients' %}">{% trans 'Clients' %}</a>
+                </li>
+                <li>
                     <a class="link link--thick link--discrete" href="{% url 'about' %}" title="{% trans 'About' %}">{% trans 'About' %}</a>
+                </li>
+                <li>
+                    <a class="link link--thick link--discrete" href="{% url 'articles:article_list' %}" title="{% trans 'News' %}">{% trans 'News' %}</a>
                 </li>
                 <li>
                     <a class="link link--thick link--discrete" href="{% url 'contact' %}" title="{% trans 'Contact' %}">{% trans 'Contact' %}</a>

@@ -6,8 +6,25 @@
     {{ client.name }} | {{ block.super }}
 {% endblock %}
 
+{% block social_meta_tags %}
+    {{ block.super }}
 
-{% block body_class %}brand{% endblock %}
+    {% block facebook_extra_tags %}
+        <meta property="og:title" content="{{ client.name }}">
+        <meta property="og:description" content="{{ client.description }}">
+        <meta property="og:image:secure_url" content="{% cloudinary_url client.image %}" %}">
+        <meta property="og:image" content="{% cloudinary_url client.image %}">
+    {% endblock %}
+
+    {% block twitter_extra_tags %}
+        <meta name="twitter:title" content="{{ client.name }}">
+        <meta name="twitter:description" content="{{ client.description }}">
+        <meta name="twitter:image" content="{% cloudinary_url client.image %}">
+    {% endblock %}
+{% endblock %}
+
+
+{% block body_class %}{{ client.name }}{% endblock %}
 
 {% block before_layout %}
     <div class="container container--pad">
@@ -26,10 +43,8 @@
                 </div>
                 <div class="brand__infoContent">
                     <div class="brand__followForm">
-                        <a class="cta cta--dark" href="{{ client.url }}" target="_blank">View Website</a>
-                            
+                        <a class="cta cta--dark" href="{{ client.url }}" target="_blank">View Website</a>      
                     </div>
-                   
                 </div>
             </div>
         </div>
@@ -37,21 +52,15 @@
 {% endblock before_layout %}
 
 {% block layout_sidebar_extra_style %}style="width: 50%; margin: 0 auto;"{% endblock %}
-
-
-            
-                {% block grid_header%}
-                   
-                {% endblock %}
+           
+{% block grid_header%}{% endblock %}
 
 {% block column_left %}
     <div class="grid__sidebarWidget">
         {{ client.description }}
     </div>
 
-    <div class="grid__sidebarWidget">
-        {% include "partials/share_menu.html" %}
-    </div>
+    <div class="grid__sidebarWidget"></div>
 {% endblock column_left %}
 
 {% block grid_header_filters %}{% endblock %}
@@ -62,8 +71,7 @@
 
 {% block content_classnames %}color-context color-context--brand{% endblock %}
 
-{% block grid %}
-{% endblock grid %}
+{% block grid %}{% endblock grid %}
 
 {% block extrascripts %}{% endblock %}
 

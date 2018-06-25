@@ -4,15 +4,28 @@
 {% load static %}
 {% load cloudinary %}
 
+{% block title %}
+    {% trans 'Style, Introduced.' %} | {{ block.super }}
+{% endblock %}
+
+{% block social_meta_tags %}
+    {{ block.super }}
+{% endblock %}
+
+
+
+{% block body_id %}homepage{% endblock %}
+{% block body_class %}homepage{% endblock %}
+
 {% block content %}
     <section class="home__header">
         <div class="container">
             <div class="home__headerWrapper">
-                <div class="visual visual--wideLandscape">
+                <div class="visual visual--wideLandscape js-scroll c-mask" data-speed="-2">
                     <img src="{% static 'unlabel/dist/img/temp/home-visual.jpg' %}" alt="{% trans 'Header header visual' %}">
                 </div>
-                <div class="home__headerTitleContainer">
-                    <h2 class="title title--headline">
+                <div class="home__headerTitleContainer js-scroll" data-speed="2"> 
+                    <h2 class="title title--headline c-mask">
                         <span class="u-block">Unla</span>
                         <span class="u-block">bel<span class="logo"><span class="logo__icon"><img src="{% static 'unlabel/dist/img/logo_dark.svg' %}" alt="{% trans 'Unlabel Logo' %}"></span></span>
                         </span>
@@ -20,7 +33,7 @@
                 </div>
                 <div class="cols cols--m home__headerCols">
                     <div class="col home__headerIntroContainer">
-                        <p class="title title--medium">{% trans 'We are a digital agency focused on driving growth and forging creative partnerships for fashion, lifestyle &amp; retail brands.' %}</p>
+                        <p class="title title--medium">{% trans 'A digital agency based in NYC focused on providing creative solutions for fashion, lifestyle &amp; retail brands.' %}</p>
                     </div>
                 </div>
             </div>
@@ -29,13 +42,13 @@
 
     <section class="home__creators color-context color-context--creators">
 
-        <div class="home__CreatorsBg"></div>
+        <div class="home__CreatorsBg js-scroll js-scroll-mask js-scroll-mask-right"></div>
 
         <div class="container">
             <div class="home__creatorsCols">
-                <div class="home__creatorsCol home__creatorsCol--left">
+                <div class="home__creatorsCol home__creatorsCol--left" >
                     {% for project in projects_left %}
-                        <article class="home_creatorGridItem">
+                        <article class="home_creatorGridItem js-scroll" data-speed="1">
                             <a href="{% url 'projects:project_detail' project.slug %}" class="u-block" title="{{ project.title }}">
                                 <figure>
                                     <div class="img-container img-container--portrait">
@@ -49,19 +62,19 @@
                             </a>
                         </article>
                     {% endfor %}
-                    <div class="home__creatorsTitleContainer">
+                    <div class="home__creatorsTitleContainer js-scroll" data-speed="1">
                         <h2 class="title title--caps">{% trans 'Recent<br> Work' %}</h2>
                     </div>
-                    <div class="home__creatorsCtaContainer">
+                    <div class="home__creatorsCtaContainer js-scroll" data-speed="1">
                         <a class="cta cta--dark" href="{% url 'projects:projects' %}">{% trans 'View All Work' %}</a>
                     </div>
-                    <div class="home__creatorsSubtitleContainer">
-                        <div class="subtitle subtitle--medium home_creatorGridItem">{% trans 'Every project is selected with care and completed with quality, style and uniqueness to fit our clients needs.' %}</div>
+                    <div class="home__creatorsSubtitleContainer js-scroll" data-speed="-1">
+                        <div class="subtitle subtitle--medium home_creatorGridItem">{% trans 'Every project is completed with quality, style and uniqueness.' %}</div>
                     </div>
                 </div>
                 <div class="home__creatorsCol home__creatorsCol--middle">
                     {% for project in projects_middle %}
-                        <article class="home_creatorGridItem">
+                        <article class="home_creatorGridItem js-scroll" data-speed="-1">
                             <a href="{% url 'projects:project_detail' project.slug %}" class="u-block">
                                 <figure>
                                     <div class="img-container img-container--portrait">
@@ -78,7 +91,7 @@
                 </div>
                 <div class="home__creatorsCol home__creatorsCol--right u-desktop-only">
                     {% for project in projects_right %}
-                        <article class="home_creatorGridItem">
+                        <article class="home_creatorGridItem js-scroll" data-speed="1">
                             <a href="{% url 'projects:project_detail' project.slug %}" class="u-block">
                                 <figure>
                                     <div class="img-container img-container--portrait">
@@ -99,15 +112,15 @@
 
     <section class="home__brands color-context color-context--brands">
         <div class="container">
-            <h2 class="home__brandsTitle title title--caps">{% trans 'Our<br class="u-desktop-only"/> Clients' %}</h2>
+            <h2 class="home__brandsTitle title title--caps js-scroll">{% trans 'Our<br class="u-desktop-only"/> Clients' %}</h2>
 
             <div class="home__brandsCarousel carousel">
                 <div class="cols cols--m cols--align-left cols--align-top">
                     <div class="col brands__carouselColLeft">
-                        <div class="swiper-container carousel_visualsSlider home__brandsVisualsSlider">
+                        <div class="swiper-container carousel_visualsSlider home__brandsVisualsSlider js-scroll" data-speed="-2">
                             <div class="swiper-wrapper">
                                 {% for client in clients %}
-                                    <div class="swiper-slide">
+                                    <div class="swiper-slide js-scroll" data-speed="2">
                                         <div class="visual visual--landscape">
                                             <img src="{% cloudinary_url client.image %}" alt="{{ client.name }}">
                                         </div>
@@ -146,7 +159,7 @@
             </div>
             <nav class="home__brandsNav">
                 <ul class="home__brandsNavList">
-                    <li class="home__brandsNavItem">
+                    <li class="home__brandsNavItem js-scroll">
                         <a href="{% url 'clients:client_list' %}" class="cta cta--dark">{% trans 'View Client List' %}</a>
                     </li>
                 </ul>
@@ -157,21 +170,21 @@
 
     <section class="home__story">
         <div class="container">
-            <div class="home__storyWrapper">
-                <h2 class="subtitle">{% trans 'What we are' %}</h2>
-                <div class="desc home__storyDesc">{% trans 'Nullam maximus faucibus volutpat. Morbi ut erat nunc. Nulla cursus erat vitae dui dictum facilisis. Maecenas vel erat orci. Cras fringilla nunc in nibh tempor, et feugiat quam pellentesque.<br>Vivamus blandit bibendum pellentesque. Cras imperdiet commodo diam at hendrerit. Vivamus at semper erat, vel interdum lectus. Proin sagittis est sed interdum finibus. Suspendisse id vulputate est. Cras sed ligula nec nisl vehicula ultricies.' %}</div>
+            <div class="home__storyWrapper js-scroll">
+                <h2 class="subtitle">{% trans 'Who we are' %}</h2>
+                <div class="desc home__storyDesc">{% trans 'We are an eclectic group of creatives that combine a broad range of expertise from technology, advertising, fashion & film industries to introduce a sense of unique style for every project. Through discovery sessions we find out what makes a brand tick and break down each problem into modules to figure out the most effective path to a solution.' %}</div>
             </div>
         </div>
     </section>
 
     <section class="home__products color-context color-context--products">
         <div class="container">
-            <h2 class="title title--caps home__productsTitle">{%trans 'Lastest<br>News' %}</h2>
+            <h2 class="title title--caps home__productsTitle js-scroll" data-speed="2">{%trans 'Lastest<br>News' %}</h2>
         </div>
         <div class="grid2 home__productsGrid">
             <ol class="grid2__list">
                 {% for article in articles %}
-                    <li class="grid2__item">
+                    <li class="grid2__item js-scroll">
                         <article>
                             <div class="grid__itemInner">
                                 <a class="u-block" href="{% url 'articles:article_detail' article.slug %}" title="{{ article.title }}">

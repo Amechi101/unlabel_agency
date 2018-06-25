@@ -4,11 +4,10 @@
 
 {% block triptych_extraClasses %}color-context color-context--brands{% endblock %}
 
-
 {% block triptych_content %}
 	<ul class="cols cols--m-3">
 		{% for client in clients_triptych %}
-			<li class="col">
+			<li class="col js-scroll" data-speed="2">
 				<a href="{% url 'clients:client_detail' client.slug %}" class="triptych__itemLink">
 					<figure>
 						<div class="img-container img-container--portrait">

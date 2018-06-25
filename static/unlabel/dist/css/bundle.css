@@ -1,3 +1,307 @@
+ /* @Amechi - CSS */
+
+/* ==============================
+   Pre Loading
+   ============================== */
+
+.pos-f-t-l {
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.pos-a {
+    position: absolute;
+}
+.pos-r {
+    position: relative;
+}
+.full-size {
+    width: 100%;
+    height: 100%;
+}
+
+.page-sweeper, .preloader-wrap {
+    z-index: 999999;
+}
+.preloader-wrap {
+    -webkit-transition: .65s cubic-bezier(.52, .01, .16, 1);
+    -moz-transition: .65s cubic-bezier(.52, .01, .16, 1);
+    transition: .65s cubic-bezier(.52, .01, .16, 1);
+    -webkit-transform: translateX(0);
+    -moz-transform: translateX(0);
+    -ms-transform: translateX(0);
+    -o-transform: translateX(0);
+    transform: translateX(0);
+    -webkit-transform-origin: 100% 0;
+    -moz-transform-origin: 100% 0;
+    -ms-transform-origin: 100% 0;
+    -o-transform-origin: 100% 0;
+    transform-origin: 100% 0;
+    overflow: hidden;
+}
+.preloader-wrap[data-active=off] {
+    pointer-events: none;
+    -webkit-transform: translateX(100vw);
+    -moz-transform: translateX(100vw);
+    -ms-transform: translateX(100vw);
+    -o-transform: translateX(100vw);
+    transform: translateX(100vw);
+}
+
+
+body:not(#homepage) .preloader-wrap .preloader-bg {
+    animation: letters-transition 5s linear infinite;
+    -moz-animation: letters-transition 5s linear infinite;
+    -webkit-animation: letters-transition 5s linear infinite;
+    -o-animation: letters-transition 5s linear infinite;
+}
+
+.preloader-wrap .preloader-bg {
+    background: #ffffff;
+}
+
+
+@keyframes letters-transition {
+    0%, 100% {
+        background-color: #ffffff;
+    }
+    25% {
+        background-color: #ffffff;
+    }
+    50% {
+        background-color: #DDE0ED;   
+    }
+    75% {
+        background-color: #ffffff;
+    }
+}
+@-webkit-keyframes letters-transition {
+    0%, 100% {
+        background-color: #ffffff;
+    }
+    25% {
+        background-color: #ffffff;
+    }
+    50% {
+        background-color: #DDE0ED;   
+    }
+    75% {
+        background-color: #ffffff;
+    }
+}
+@-o-keyframes letters-transition {
+    0%, 100% {
+        background-color: #ffffff;
+    }
+    25% {
+        background-color: #ffffff;
+    }
+    50% {
+        background-color: #DDE0ED;   
+    }
+    75% {
+        background-color: #ffffff;
+    }
+}
+@-moz-keyframes letters-transition {
+    0%, 100% {
+        background-color: #ffffff;
+    }
+    25% {
+        background-color: #ffffff;
+    }
+    50% {
+        background-color: #DDE0ED;   
+    }
+    75% {
+        background-color: #ffffff;
+    }
+}
+
+.page-sweeper {
+    display: none;
+}
+.page-sweeper div {
+    top: 0;
+    position: absolute;
+    left: 0;
+}
+.page-sweeper div {
+    width: 100%;
+    height: 100%;
+    -webkit-transform: translateX(-100vw);
+    -moz-transform: translateX(-100vw);
+    -ms-transform: translateX(-100vw);
+    -o-transform: translateX(-100vw);
+    transform: translateX(-100vw);
+    -webkit-transform-origin: 100% 0;
+    -moz-transform-origin: 100% 0;
+    -ms-transform-origin: 100% 0;
+    -o-transform-origin: 100% 0;
+    transform-origin: 100% 0;
+    background-color: #ffffff;
+    -webkit-transition: -webkit-transform .55s cubic-bezier(.7, .3, 0, 1) .25s;
+    -moz-transition: -moz-transform .55s cubic-bezier(.7, .3, 0, 1) .25s;
+    transition: transform .55s cubic-bezier(.7, .3, 0, 1) .25s;
+}
+.page-sweeper.page-sweeper-under div {
+    background-color: #DDE0ED;
+    -webkit-transition: -webkit-transform .65s cubic-bezier(.52, .01, .16, 1);
+    -moz-transition: -moz-transform .65s cubic-bezier(.52, .01, .16, 1);
+    transition: transform .65s cubic-bezier(.52, .01, .16, 1);
+}
+.page-sweeper[data-active=on] div {
+    -webkit-transform: translateX(0);
+    -moz-transform: translateX(0);
+    -ms-transform: translateX(0);
+    -o-transform: translateX(0);
+    transform: translateX(0);
+}
+
+.preloader-elements {
+    width:100%;
+    top: 50%;
+    transform: translate(0%,-50%);
+    margin: 0 auto;
+    text-align: center;
+    padding:20px;
+}
+
+.preloader-elements > div {
+  margin-top:20px;
+}
+
+.preloader-elements .title > span,
+.preloader-elements .text > p,
+.preloader-elements .logo {
+    visibility: hidden;
+}
+
+.preloader-elements .title > span,
+.preloader-elements .text > p {
+    display: inline-block;
+}
+
+.preloader-elements .title > span,
+.preloader-elements .text > p {
+    font-family: 'FaroWeb-DisplayLucky';
+}
+
+.preloader-elements .title > span {
+   font-size: 125px;
+   text-transform:uppercase;
+}
+
+.preloader-elements .text > p {
+    font-size: 34px;
+} 
+
+.preloader-elements .logo {
+    width: 50px;
+}
+
+/* @Amechi - CSS */
+/* ==============================
+   Page Tranistions/Animations
+   ============================== */
+
+/* 
+smooth scroll container 
+*/
+.has-smooth-scroll .unlabel-scroll {
+    height: 100vh;
+}
+
+/* c-mask for initial page load */
+.c-mask:after,
+.c-mask:before {
+    position: absolute;
+    left: -0.25rem;
+    right: -0.25rem;
+    bottom: -0.25rem;
+    top: -0.25rem;
+    content: "";
+    background: #ffffff;
+    -webkit-transform: scale(1, 1);
+    -ms-transform: scale(1, 1);
+    transform: scale(1, 1);
+    -webkit-transform-origin: top right;
+    -ms-transform-origin: top right;
+    transform-origin: top right;
+    -webkit-transition-delay: 0s;
+    transition-delay: 0s;
+    z-index: 3;
+}
+
+.dom-is-loaded .c-mask:after,
+.dom-is-loaded .c-mask:before {
+    -webkit-transition: -webkit-transform 0.9s cubic-bezier(0.84, -0.01, 0.48, 0.995);
+    transition: -webkit-transform 0.9s cubic-bezier(0.84, -0.01, 0.48, 0.995);
+    transition: transform 0.9s cubic-bezier(0.84, -0.01, 0.48, 0.995);
+    transition: transform 0.9s cubic-bezier(0.84, -0.01, 0.48, 0.995), -webkit-transform 0.9s cubic-bezier(0.84, -0.01, 0.48, 0.995);
+}
+
+.dom-is-loaded .c-mask-vertical:after,
+.dom-is-loaded .c-mask-vertical:before {
+    -webkit-transform: scale(1, 0); 
+    -ms-transform: scale(1, 0);
+    transform: scale(1, 0);
+}
+
+.dom-is-loaded .c-mask-horizontal:after,
+.dom-is-loaded .c-mask-horizontal:before {
+    -webkit-transform: scale(0, 1); 
+    -ms-transform: scale(0, 1);
+    transform: scale(0, 1);
+}
+
+/* scrolling fade in animation */
+.dom-is-loaded .js-scroll {
+    opacity: 0;
+    transition: opacity 1s ease-out
+}
+
+.dom-is-loaded .js-scroll.is-show {
+    opacity: 1;
+}
+
+/* c-mask for scrolling InView */
+.is-desktop .dom-is-loaded .js-scroll-mask:after { 
+    position: absolute;
+    left: -1px;
+    right: -1px;
+    bottom: -1px;
+    top: -1px;
+    content: "";
+    background: #ffffff;
+    -webkit-transform: scale(1, 1);
+    -ms-transform: scale(1, 1);
+    transform: scale(1, 1);
+ }
+
+ .is-desktop .dom-is-loaded .js-scroll-mask-right:after { 
+    -webkit-transform-origin: top right;
+    -ms-transform-origin: top right;
+    transform-origin: top right;
+ }
+
+ .is-desktop .dom-is-loaded .js-scroll-mask-left:after { 
+    -webkit-transform-origin: top left;
+    -ms-transform-origin: top left;
+    transform-origin: top left;
+ }
+
+ .is-desktop .dom-is-loaded .js-scroll-mask.is-show:after {
+    -webkit-transform: scale(0, 1);
+    -ms-transform: scale(0, 1);
+     transform: scale(0, 1); 
+    -webkit-transition: -webkit-transform 0.9s cubic-bezier(0.84, -0.01, 0.48, 0.995);
+    transition: -webkit-transform 0.9s cubic-bezier(0.84, -0.01, 0.48, 0.995);
+    transition: transform 0.9s cubic-bezier(0.84, -0.01, 0.48, 0.995);
+    transition: transform 0.9s cubic-bezier(0.84, -0.01, 0.48, 0.995), -webkit-transform 0.9s cubic-bezier(0.84, -0.01, 0.48, 0.995);
+}
+
 meta[name="device-size"] {
   font-family: s;
 }
@@ -4602,9 +4906,12 @@ html.no-js .header_submenuToggler:hover .header__submenu {
     -webkit-transform: translate(100%, 0);
             transform: translate(100%, 0);
   }
+  /* @Amechi */
   .home__creatorsSubtitleContainer .subtitle {
-    -webkit-transform: translate(96px, 0);
-            transform: translate(96px, 0);
+    /*-webkit-transform: translate(96px, 0);
+            transform: translate(96px, 0);*/
+    position: relative;        
+    left: 130%;
   }
 }
 @media (max-width: 767px) {
@@ -6382,4 +6689,4 @@ input[type=radio].radio:not(:checked) + label:hover::before {
 .u-underline {
   text-decoration: underline;
 }
-/*# sourceMappingURL=bundle.css.map */
+/*# sourceMappingURL=bundle.css.map 

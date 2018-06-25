@@ -7,13 +7,17 @@
     {% trans 'News' %} | {{ block.super }}
 {% endblock %}
 
+{% block social_meta_tags %}
+    {{ block.super }}
+{% endblock %}
+
 {% block content_classnames %}color-context color-context--products{% endblock %}
 
 {% block layout_extra_classnames %}grid--borderTopLess{% endblock %}
 {% block layout_sidebar_extra_classnames %}u-desktop-only{% endblock %}
 
 {% block grid_header_titleContent %}
-    <h1 class="title title--caps">Lastest News</h1>
+    <h1 class="title title--caps c-mask">Lastest News</h1>
 {% endblock %}
 
 {% block grid_header_filters %}{% endblock %}
@@ -21,21 +25,7 @@
 {% block grid_header_sortBy %}{% endblock %}
 
 {% block grid_header_results %}
-    <div>
-        {% with result_type_singular|default:'result' as result_type_singular and result_type_plural|default:'results' as result_type_plural %}
-            {% if articles|length > 0 %}
-                {% blocktrans count num_results=articles|length %}
-                    <strong>{{ num_results }}</strong>&nbsp;{{result_type_singular}}
-                {% plural %}
-                    <strong>{{ num_results }}</strong>&nbsp;{{result_type_plural}}
-                {% endblocktrans %}
-            {% else %}
-                {% blocktrans %}
-                    <strong>0</strong>&nbsp;{{result_type_plural}}
-                {% endblocktrans %}
-            {% endif %}
-        {% endwith %}
-    </div>
+    {% include "partials/number_of_results.html" %}
 {% endblock %}
 
 {% block column_left %}{% endblock %}

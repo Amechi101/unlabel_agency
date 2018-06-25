@@ -390,7 +390,7 @@ SERVICES = (
     ('SAL', _('Sales')),
     ('COC', _('Content Creation')),
     ('DES', _('Design')),
-    ('CON', _('Consulation')),
+    ('CON', _('Consultation')),
     ('STR', _('Strategy')),
     ('INF', _('Influence')),
 )

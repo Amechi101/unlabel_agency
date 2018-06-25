@@ -18,7 +18,7 @@ class HomePageView(TemplateView):
 
         kwargs['projects_right'] = Project.objects.all().order_by('-created')[2:4]
 
-        kwargs['clients'] = Client.objects.all().order_by('name')
+        kwargs['clients'] = Client.objects.all().order_by('-created')
 
         kwargs['articles'] = Article.objects.all()
 

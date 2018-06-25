@@ -145,7 +145,7 @@
                                     {% for client in clients %}
                                         <div class="swiper-slide">
                                             <h3 class="carousel_contentItem subtitle">{{ client.name|default:'Name' }}</h3>
-                                            <div class="carousel__contentItem desc desc--small">{{ client.description|default:'Description' }}</div>
+                                            <div class="carousel__contentItem desc desc--small">{{ client.description|default:'Description'|truncatechars:500  }}</div>
                                         </div>
                                     {% endfor %}
                                 </div>
@@ -195,7 +195,7 @@
                                             </div>
                                         {% endblock %}
                                         <figcaption>
-                                            <h2>{{ article.title }}</h2>
+                                            <h2>{{ article.title|capfirst }}</h2>
                                             <h3>
                                                 <small>{% trans 'by' %} {{ article.author }}</small>
                                             </h3>    

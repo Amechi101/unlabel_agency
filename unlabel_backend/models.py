@@ -14,13 +14,50 @@ from config.utils.data import SERVICES_CHOICES
 
 from config.utils.fields import StateField, CountryField
 
+@python_2_unicode_compatible
+class Client(TimeModel):
+
+	name = models.CharField(max_length=255, null=True, blank=False )
+    
+	image = CloudinaryField('Image', null=True, blank=True)
+
+	description = models.TextField(max_length=1000, null=True, blank=False )
+
+	city = models.CharField(_("City"), max_length=100, null=True, blank=True)
+    
+	state = StateField()
+
+	country = CountryField()
+
+	url = models.URLField(max_length=255, null=True, blank=True, verbose_name=_('Client Website'))
+
+	slug = models.SlugField(_('Slug'), max_length=255, unique=True, blank=True)
+
+
+	def __str__(self):
+		return "{0}".format(self.name)
+
+	def get_absolute_url(self):
+		return reverse('clients:client_detail', args=[self.slug])
+
+	def save(self, *args, **kwargs):
+		self.slug = slugify(self.name)
+
+		self.full_clean()
+
+		super(Client, self).save(*args, **kwargs)
+
+	# Metadata
+	class Meta: 
+		verbose_name = _('Client')
+		verbose_name_plural = _('Clients')
 
 @python_2_unicode_compatible
 class Project(TimeModel):
     
     title = models.CharField(max_length=255, null=True, blank=False )
 
-    client_name = models.CharField(max_length=255, null=True, blank=False )
+    client_name = models.ForeignKey(Client, on_delete=models.CASCADE,  null=True, blank=True, verbose_name=_('Client'), related_name='projects')
 
     cover_image = CloudinaryField('Cover Image', null=True, blank=True)
 
@@ -84,44 +121,6 @@ class Capability(models.Model):
 		verbose_name = _('Capability')
 		verbose_name_plural = _('Capabilities')
 
-
-@python_2_unicode_compatible
-class Client(TimeModel):
-
-	name = models.CharField(max_length=255, null=True, blank=False )
-    
-	image = CloudinaryField('Image', null=True, blank=True)
-
-	description = models.TextField(max_length=1000, null=True, blank=False )
-
-	city = models.CharField(_("City"), max_length=100, null=True, blank=True)
-    
-	state = StateField()
-
-	country = CountryField()
-
-	url = models.URLField(max_length=255, null=True, blank=True, verbose_name=_('Client Website'))
-
-	slug = models.SlugField(_('Slug'), max_length=255, unique=True, blank=True)
-
-
-	def __str__(self):
-		return "{0}".format(self.name)
-
-	def get_absolute_url(self):
-		return reverse('clients:client_detail', args=[self.slug])
-
-	def save(self, *args, **kwargs):
-		self.slug = slugify(self.name)
-
-		self.full_clean()
-
-		super(Client, self).save(*args, **kwargs)
-
-	# Metadata
-	class Meta: 
-		verbose_name = _('Client')
-		verbose_name_plural = _('Clients')
 
 
 @python_2_unicode_compatible

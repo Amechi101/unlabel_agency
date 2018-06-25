@@ -9,7 +9,7 @@
 				<a href="{% url 'projects:project_detail' project.slug %}" class="triptych__itemLink">
 					<figure>
 						<div class="img-container img-container--portrait">
-	                        <img src="{% cloudinary_url project.image %}" alt="{{ project.title }}">
+	                        <img src="{% cloudinary_url project.cover_image %}" alt="{{ project.title }}">
 						</div>
 						<figcaption>
 							<p>{{ project.title }}</p>

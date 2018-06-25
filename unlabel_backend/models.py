@@ -21,7 +21,7 @@ class Client(TimeModel):
     
 	image = CloudinaryField('Image', null=True, blank=True)
 
-	description = models.TextField(max_length=1000, null=True, blank=False )
+	description = models.TextField(max_length=1000, null=True, blank=True )
 
 	city = models.CharField(_("City"), max_length=100, null=True, blank=True)
     

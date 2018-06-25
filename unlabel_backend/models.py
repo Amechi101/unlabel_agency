@@ -112,7 +112,7 @@ class Capability(models.Model):
     
 	image = CloudinaryField('Image', null=True, blank=True)
 
-	description = models.TextField(max_length=1000, null=True, blank=False )
+	description = models.TextField(max_length=1000, null=True, blank=True )
 
 	def __str__(self):
 		return "{0}".format(self.name)

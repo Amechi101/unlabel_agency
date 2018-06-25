@@ -62,7 +62,7 @@ class Project(TimeModel):
 
     cover_image = CloudinaryField('Cover Image', null=True, blank=True)
 
-    description = models.TextField(max_length=1000, null=True, blank=False )
+    description = models.TextField(max_length=1000, null=True, blank=True )
 
     services = MultiSelectField(max_length=100, choices=SERVICES_CHOICES)
 

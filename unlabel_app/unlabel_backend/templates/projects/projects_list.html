@@ -1,0 +1,106 @@
+{% extends "global/layout_2_col.html" %}
+
+{% load staticfiles %}
+{% load i18n %}
+{% load cloudinary %}
+
+{% block title %}
+    {% trans 'Projects' %} | {{ block.super }}
+{% endblock %}
+
+{% block social_meta_tags %}
+    {{ block.super }}
+{% endblock %}
+
+{% block body_id %}work{% endblock %}
+{% block body_class %}work{% endblock %}
+
+{% block before_layout %}
+    {% trans "Our Work" as triptych_title %}
+    {% include "projects/partials/projects_triptych.html" with triptych_title=triptych_title triptych_isBigTitle=True triptych_isWrapperThinner=True triptych_isContentDesktopOnly=True %}
+{% endblock before_layout %}
+
+{% block content_classnames %}color-context color-context--creators{% endblock %}
+
+{% block layout_sidebar_extra_classnames %}u-desktop-only{% endblock %}
+
+{% block column_left %}{% endblock column_left %}
+
+{% block grid_header_filters %}{% endblock %}
+
+{% block grid_header_sortBy %}{% endblock %}
+
+{% block grid_header_results %}
+     {% include "partials/number_of_results.html" %}
+{% endblock %}
+
+{% block content %}
+    {% if projects %}
+        <ol class="grid__list color-context color-context--creators">
+            {% for project in projects %}
+                <li class="grid__item grid__item--s-2 grid__item--l-3 grid__item--xl-4 grid__item--xxl-5 js-scroll">
+                    <article>
+                        <div class="grid__itemInner">
+                            <a class="u-block" href="{% url 'projects:project_detail' project.slug %}" title="{{ project.title }}">
+                                <figure>
+                                    <div class="img-container img-container--portrait">
+                                        <img src="{% cloudinary_url project.cover_image %}" alt="{{ project.title }}">
+                                    </div>
+                                    <figcaption>
+                                        <h2>{{ project.title }}</h2>
+                                        <p>{{ project.client_name }}</p>
+                                    </figcaption>
+                                </figure>
+                            </a>
+                        </div>
+                    </article>
+                </li>
+            {% endfor %}
+        </ol>
+    {% else %}
+      <div class="grid__emptyMessage">
+        <p class="missing">{% trans "Projects Coming Soon!" %}</p>
+      </div>
+    {% endif %}
+{% endblock content %}
+
+{% block after_layout %}
+    {# TODO : make pagination work with partial then remove this #}
+    <!-- <div class="pagination">
+        <span class="step-links">
+            {% if influencers.has_previous %}
+                <a href="?page={{ influencers.previous_page_number }}">previous</a>
+            {% endif %}
+
+            <span class="current">
+                Page {{ influencers.number }} of {{ influencers.paginator.num_pages }}.
+            </span>
+
+            {% if influencers.has_next %}
+                <a href="?page={{ influencers.next_page_number }}">next</a>
+            {% endif %}
+        </span>
+    </div> -->
+    {% comment %}
+    <div class="grid__paginationContainer">
+        {% include "partials/pagination.html" %}
+    </div>
+    {% endcomment %}
+{% endblock %}
+
+
+{% block extrascripts %}{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

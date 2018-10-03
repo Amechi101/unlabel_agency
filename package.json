@@ -1,0 +1,49 @@
+{
+  "name": "unlabel-frontend",
+  "description": "Unlabel Frontend",
+  "scripts": {
+    "dev": "npm run css:dev & npm run js:dev & npm run server:dev",
+    "prod": "npm run css:prod & npm run js:prod",
+    "server:dev": "concurrently --kill-others \"python manage.py runserver\"",
+    "css:dev": "stylus --use autoprefixer-stylus --use ./node_modules/stylus-font-face --with {limit:80000} --watch unlabel_app/static/src/css/index.styl -o unlabel_app/static/dist/css/bundle.css --sourcemap",
+    "js:dev": "watchify unlabel_app/static/src/js/index.js -d -v -t babelify -t aliasify -o unlabel_app/static/dist/js/bundle.js",
+    "css:prod": "stylus --use autoprefixer-stylus --use node_modules/stylus-font-face --with {limit:80000} unlabel_app/static/src/css/index.styl -o unlabel_app/static/dist/css/bundle.min.css --compress",
+    "js:prod": "browserify unlabel_app/static/src/js/index.js -t babelify -t aliasify -t uglifyify | uglifyjs -c > unlabel_app/static/dist/js/bundle.min.js"
+  },
+  "devDependencies": {
+    "aliasify": "2.1.0",
+    "autoprefixer-stylus": "0.13.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-stage-3": "6.24.1",
+    "babelify": "7.3.0",
+    "browserify": "14.3.0",
+    "concurrently": "^3.6.1",
+    "stylus": "0.54.5",
+    "stylus-font-face": "1.1.1",
+    "uglify-es": "3.0.3",
+    "uglifyify": "3.0.4",
+    "watchify": "3.9.0"
+  },
+  "dependencies": {
+    "closest": "0.0.1",
+    "debounce": "1.0.2",
+    "domready": "1.0.8",
+    "events": "1.1.1",
+    "gsap": "1.19.1",
+    "scrollmagic": "2.0.5",
+    "swiper": "3.4.2",
+    "tabbable": "1.0.6",
+    "zxcvbn": "4.4.2"
+  },
+  "babel": {
+    "presets": [
+      "env",
+      "stage-3"
+    ],
+    "ignore": [
+      "node_modules",
+      "unlabel_app/static/dist/**.js",
+      "unlabel_app/static/dist/vendors/**.js"
+    ]
+  }
+}

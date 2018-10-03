@@ -1,37 +1,167 @@
+"""
+Production settings for Unlabel project.
+
+- Use WhiteNoise for serving static files
+- Use Redis for cache
+
+- Use sentry for error logging
+- Use opbeat for error reporting (did not install)
+
+"""
+
+
 import dj_database_url
+import logging
 
 from .base_settings import *
 
-DEBUG = False
+# SECRET CONFIGURATION
+# ------------------------------------------------------------------------------
+# See: https://docs.djangoproject.com/en/dev/ref/settings/#secret-key
+# Raises ImproperlyConfigured exception if DJANGO_SECRET_KEY not in os.environ
+SECRET_KEY = env('DJANGO_SECRET_KEY')
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'unlabel', 'static')
 
-# Honor the 'X-Forwarded-Proto' header for request.is_secure()
+# This ensures that Django will be able to detect a secure connection
+# properly on Heroku.
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
-SECURE_SSL_REDIRECT = True
+# raven sentry client
+# See https://docs.sentry.io/clients/python/integrations/django/
+INSTALLED_APPS += ['raven.contrib.django.raven_compat', ]
 
-SECURE_CONTENT_TYPE_NOSNIFF = True
+RAVEN_MIDDLEWARE = ['raven.contrib.django.raven_compat.middleware.SentryResponseErrorIdMiddleware']
+MIDDLEWARE = RAVEN_MIDDLEWARE + MIDDLEWARE
 
+
+# Use Whitenoise to serve static files
+# See: https://whitenoise.readthedocs.io/
+WHITENOISE_MIDDLEWARE = ['whitenoise.middleware.WhiteNoiseMiddleware', ]
+
+MIDDLEWARE = WHITENOISE_MIDDLEWARE + MIDDLEWARE
+
+
+# SECURITY CONFIGURATION
+# ------------------------------------------------------------------------------
+# See https://docs.djangoproject.com/en/dev/ref/middleware/#module-django.middleware.security
+# and https://docs.djangoproject.com/en/dev/howto/deployment/checklist/#run-manage-py-check-deploy
+
+# set this to 60 seconds and then to 518400 when you can prove it works
+SECURE_HSTS_SECONDS = 60
+SECURE_HSTS_INCLUDE_SUBDOMAINS = env.bool(
+    'DJANGO_SECURE_HSTS_INCLUDE_SUBDOMAINS', default=True)
+SECURE_CONTENT_TYPE_NOSNIFF = env.bool(
+    'DJANGO_SECURE_CONTENT_TYPE_NOSNIFF', default=True)
 SECURE_BROWSER_XSS_FILTER = True
-
 SESSION_COOKIE_SECURE = True
-
+SESSION_COOKIE_HTTPONLY = True
+SECURE_SSL_REDIRECT = env.bool('DJANGO_SECURE_SSL_REDIRECT', default=True)
 CSRF_COOKIE_SECURE = True
-
 CSRF_COOKIE_HTTPONLY = True
-
 X_FRAME_OPTIONS = 'DENY'
 
+
+# SITE CONFIGURATION
+# ------------------------------------------------------------------------------
+# Hosts/domain names that are valid for this site
+# See https://docs.djangoproject.com/en/dev/ref/settings/#allowed-hosts
+ALLOWED_HOSTS = env.list('DJANGO_ALLOWED_HOSTS', default=['unlabel.us',])
+# END SITE CONFIGURATION
+
+INSTALLED_APPS += ['gunicorn', ]
+
+# Static Assets
+# ------------------------
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+
+# TEMPLATE CONFIGURATION
+# ------------------------------------------------------------------------------
+# See:
+# https://docs.djangoproject.com/en/dev/ref/templates/api/#django.template.loaders.cached.Loader
+TEMPLATES[0]['OPTIONS']['loaders'] = [
+    ('django.template.loaders.cached.Loader', [
+        'django.template.loaders.filesystem.Loader', 'django.template.loaders.app_directories.Loader', ]),
+]
+
 DATABASES = {
-   'default': dj_database_url.config(default='postgres://jgdavlmmmlhymo:c257c5c9e7e944e994844c0e751cc02d9783f92c03a8cd34e557d40e6ad5875b@ec2-54-83-0-158.compute-1.amazonaws.com:5432/d5hjg8s9358vsu')
+   'default': dj_database_url.config(default=env('DATABASE_URL'))
 }
 
+# CACHING
+# ------------------------------------------------------------------------------
+REDIS_LOCATION = 'redis://{0}:{1}/0'.format(
+    env('REDIS_ENDPOINT_ADDRESS'),
+    env('REDIS_PORT')
+)
+
+# Heroku URL does not pass the DB number, so we parse it in
 CACHES = {
     'default': {
-        'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
-        'TIMEOUT': 60
+        'BACKEND': 'django_redis.cache.RedisCache',
+        'LOCATION': REDIS_LOCATION,
+        'OPTIONS': {
+            'CLIENT_CLASS': 'django_redis.client.DefaultClient',
+            'IGNORE_EXCEPTIONS': True,  # mimics memcache behavior.
+                                        # http://niwinz.github.io/django-redis/latest/#_memcached_exceptions_behavior
+        }
     }
+}
+
+# Sentry Configuration
+SENTRY_DSN = env('DJANGO_SENTRY_DSN')
+SENTRY_CLIENT = env('DJANGO_SENTRY_CLIENT', default='raven.contrib.django.raven_compat.DjangoClient')
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': True,
+    'root': {
+        'level': 'WARNING',
+        'handlers': ['sentry', ],
+    },
+    'formatters': {
+        'verbose': {
+            'format': '%(levelname)s %(asctime)s %(module)s '
+                      '%(process)d %(thread)d %(message)s'
+        },
+    },
+    'handlers': {
+        'sentry': {
+            'level': 'ERROR',
+            'class': 'raven.contrib.django.raven_compat.handlers.SentryHandler',
+        },
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+            'formatter': 'verbose'
+        }
+    },
+    'loggers': {
+        'django.db.backends': {
+            'level': 'ERROR',
+            'handlers': ['console', ],
+            'propagate': False,
+        },
+        'raven': {
+            'level': 'DEBUG',
+            'handlers': ['console', ],
+            'propagate': False,
+        },
+        'sentry.errors': {
+            'level': 'DEBUG',
+            'handlers': ['console', ],
+            'propagate': False,
+        },
+        'django.security.DisallowedHost': {
+            'level': 'ERROR',
+            'handlers': ['console', 'sentry', ],
+            'propagate': False,
+        },
+    },
+}
+SENTRY_CELERY_LOGLEVEL = env.int('DJANGO_SENTRY_LOG_LEVEL', logging.INFO)
+RAVEN_CONFIG = {
+    'CELERY_LOGLEVEL': env.int('DJANGO_SENTRY_LOG_LEVEL', logging.INFO),
+    'DSN': SENTRY_DSN
 }
 
 

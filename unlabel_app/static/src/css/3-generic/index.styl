@@ -1,0 +1,17 @@
+* {
+  box-sizing: border-box
+}
+
+body {
+  overflow-x: hidden
+  -webkit-font-smoothing: antialiased
+  -moz-osx-font-smoothing: grayscale
+  font-family $font_regular
+  font-size 14px
+  line-height 20px
+  color $color_body 
+}
+
+#content_inner {
+  min-height: calc(100vh - 80px - 153px) // content min height = viewport height - minimum header height - minimum footer height
+}

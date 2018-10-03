@@ -1,5 +1,5 @@
 """
-WSGI config for unlabel_school project.
+WSGI config
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 

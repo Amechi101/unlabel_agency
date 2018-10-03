@@ -1,4 +1,13 @@
 import cloudinary
+
+from django.contrib.sites.models import Site
+
+def site_processor(request):
+    return { 
+        'site': Site.objects.get_current() 
+    }
+
+
 def consts(request):
     return dict(
         ICON_EFFECTS = dict(
@@ -22,4 +31,3 @@ def consts(request):
             ]
         ),
     )
-

@@ -7,7 +7,7 @@
     "server:dev": "concurrently --kill-others \"python manage.py runserver\"",
     "css:dev": "stylus --use autoprefixer-stylus --use ./node_modules/stylus-font-face --with {limit:80000} --watch unlabel_app/static/src/css/index.styl -o unlabel_app/static/dist/css/bundle.css --sourcemap",
     "js:dev": "watchify unlabel_app/static/src/js/index.js -d -v -t babelify -t aliasify -o unlabel_app/static/dist/js/bundle.js",
-    "css:prod": "stylus --use autoprefixer-stylus --use node_modules/stylus-font-face --with {limit:80000} unlabel_app/static/src/css/index.styl -o unlabel_app/static/dist/css/bundle.min.css --compress",
+    "css:prod": "stylus --use autoprefixer-stylus --use ./node_modules/stylus-font-face --with {limit:80000} unlabel_app/static/src/css/index.styl -o unlabel_app/static/dist/css/bundle.min.css --compress",
     "js:prod": "browserify unlabel_app/static/src/js/index.js -t babelify -t aliasify -t uglifyify | uglifyjs -c > unlabel_app/static/dist/js/bundle.min.js"
   },
   "devDependencies": {

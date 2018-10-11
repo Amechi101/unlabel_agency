@@ -1,0 +1,95 @@
+* {
+  box-sizing: border-box
+}
+
+body {
+  overflow-x: hidden
+  -webkit-font-smoothing: antialiased
+  -moz-osx-font-smoothing: grayscale
+  font-family $font_regular
+  font-size 14px
+  line-height 20px
+  color $color_body 
+}
+
+/*
+.dom-is-loaded .c-mask:before {
+    position: absolute;
+    left: -0.25rem;
+    right: -0.25rem;
+    bottom: -0.25rem;
+    top: -0.25rem;
+    content: "";
+    background: #ffffff;
+    -webkit-transform: scale(1, 1);
+    -ms-transform: scale(1, 1);
+    transform: scale(1, 1);
+    -webkit-transform-origin: top right;
+    -ms-transform-origin: top right;
+    transform-origin: top right;
+    -webkit-transition-delay: 0s;
+    transition-delay: 0s;
+    z-index: 3;
+}
+*/
+
+
+.dom-is-loaded  {
+    /* vertical scrolling fade in animation */
+    .js-scroll {
+        opacity: 0;
+        transition(opacity)
+    }
+
+    .js-scroll.is-show {
+        opacity: 1;
+    }
+    
+    /* horizontal scrolling fade in animation */
+    .js-scroll-mask:after { 
+        position: absolute
+        left: -1px
+        right: -1px
+        bottom: -1px
+        top: -1px
+        content: ""
+        background: #ffffff
+        transform: scale(1, 1)
+        transition(transform)
+    }
+
+    .js-scroll-mask-right:after { 
+        transform-origin: top right;
+    }
+
+    .js-scroll-mask-left:after { 
+        transform-origin: top left;
+    }
+
+    .js-scroll-mask.is-show:after {
+        transform: scale(0, 1); 
+    }
+}
+
+
+.has-smooth-scroll {
+    /*body {
+        height: 100%;
+        width: 100%;
+        overflow: hidden;
+    }*/
+
+    .unlabel-scroll {
+        height: 100vh;
+        /*position: relative;
+        overflow: hidden;*/
+    }
+}
+
+/*.scroll-content {
+    overflow: auto;
+}
+*/
+#content_inner {
+  min-height: calc(100vh - 80px - 153px) // content min height = viewport height - minimum header height - minimum footer height
+}

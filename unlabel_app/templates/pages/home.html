@@ -139,7 +139,9 @@
                                     {% for project in projects %}
                                         <div class="swiper-slide">
                                             <h3 class="carousel_contentItem subtitle">{{ project.title }}</h3>
-                                            <div class="carousel__contentItem desc desc--small">{{ project.description|truncatechars:500 }}<br><br><a class="link link--thick" href="{% url 'projects:project_detail' project.slug %}">View Project</a></div>
+                                            <div class="carousel__contentItem desc desc--small">
+                                                <!-- {{ project.description|truncatechars:500|safe }}<br><br> -->
+                                                <a class="link link--thick" href="{% url 'projects:project_detail' project.slug %}">View Project</a></div>
                                         </div>
                                     {% endfor %}
                                 </div>

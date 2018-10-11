@@ -1,6 +1,6 @@
 from .base_settings import *
 
-PRODUCTION = True
+PRODUCTION = env.bool('DJANGO_PRODUCTION_BOOL', default=False)
 
 if PRODUCTION == True:
     from .production_settings import *

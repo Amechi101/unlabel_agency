@@ -38,8 +38,8 @@
                 <div class="invite__headerTitleContainer">
                     <h1 class="title title--caps">{{ project.title }}</h1>
                 </div>
-                <div class="invite__headerVisualContainer js-scroll" data-speed="1">
-                    <img src="{% cloudinary_url project.cover_image %}" alt="{{ project.title }}">
+                <div class="invite__headerVisualContainer">
+                    <img style='margin: 0 auto;' src="{% cloudinary_url project.cover_image GENERAL_IMAGES %}" alt="{{ project.title }}">
                 </div>
             </div>
         </div>
@@ -82,8 +82,8 @@
         <div class="container">
             {% for images in project_images %}
                 <div class="home__headerWrapper">
-                    <div class="visual">
-                        <img src="{% cloudinary_url images.image GENERAL_IMAGES %}" alt="{{ project.title }}">
+                    <div class="visual js-scroll js-scroll-mask js-scroll-mask-right" data-speed='1' data-viewport-offset='0.3'>
+                        <img style='object-fit: contain !important;' src="{% cloudinary_url images.image GENERAL_IMAGES %}" alt="{{ project.title }}">
                     </div>
                 </div>
             {% endfor %}

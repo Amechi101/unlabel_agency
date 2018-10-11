@@ -41,7 +41,7 @@
                             <a class="u-block" href="{% url 'projects:project_detail' project.slug %}" title="{{ project.title }}">
                                 <figure>
                                     <div class="img-container img-container--portrait">
-                                        <img src="{% cloudinary_url project.cover_image %}" alt="{{ project.title }}">
+                                        <img src="{% cloudinary_url project.cover_image GENERAL_IMAGES %}" alt="{{ project.title }}">
                                     </div>
                                     <figcaption>
                                         <h2>{{ project.title }}</h2>

@@ -18,6 +18,14 @@ def consts(request):
                 dict(angle=10),
             ]
         ),
+        COMPRESS_IMAGES = dict(
+            format="jpg", 
+            type="fetch",
+            crop="fit", 
+            height=1000, 
+            width=1000,
+            quality="auto"
+        ),
         THUMBNAIL = dict(
             format="jpg", 
             crop="fill", 
@@ -27,7 +35,11 @@ def consts(request):
         GENERAL_IMAGES = dict(
             format="jpg", 
             transformation=[
-                dict(crop="fill", width=1000)
+                dict(
+                    crop="fit", 
+                    quality="auto",
+                    width=0.2
+                )
             ]
         ),
     )

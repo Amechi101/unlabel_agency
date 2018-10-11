@@ -49,7 +49,6 @@ class PageLoading {
 
 			if( imageCount === this.totalCurrentImages ) {
 				window.onload = this.initPageAnimations();
-				console.log('page loaded!'); 
 			}
 		}
 	

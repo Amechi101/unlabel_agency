@@ -56,11 +56,11 @@
                         <h2 class="title title--caps">{% trans 'Our<br> Studio' %}</h2>
                     </div>
                     <div class="home__creatorsCtaContainer">
-                        <a class="cta cta--dark" href="">{% trans 'Discover Unlabel' %}</a>
+                        <a class="cta cta--dark" href="{% url 'about' %}">{% trans 'Discover Unlabel' %}</a>
                     </div>
-                    <div class="home__creatorsSubtitleContainer">
+                    <!-- <div class="home__creatorsSubtitleContainer">
                         <div class="subtitle subtitle--medium home_creatorGridItem">{% trans 'Every project is completed with quality, style and uniqueness.' %}</div>
-                    </div>
+                    </div> -->
                 </div>
                 
                 <div class="home__creatorsCol home__creatorsCol--middle js-scroll" data-speed='2'>
@@ -115,8 +115,8 @@
                             <div class="swiper-wrapper">
                                 {% for project in projects %}
                                     <div class="swiper-slide">
-                                        <div class="visual visual--landscape">
-                                            <img src="{% cloudinary_url project.cover_image %}" alt="{{ project.title }}">
+                                        <div class="visual visual--landscape js-scroll js-scroll-mask js-scroll-mask-right" data-speed='1'>
+                                            <img src="{% cloudinary_url project.cover_image GENERAL_IMAGES %}" alt="{{ project.title }}">
                                         </div>
                                     </div>
                                 {% endfor %}
@@ -141,7 +141,7 @@
                                             <h3 class="carousel_contentItem subtitle">{{ project.title }}</h3>
                                             <div class="carousel__contentItem desc desc--small">
                                                 <!-- {{ project.description|truncatechars:500|safe }}<br><br> -->
-                                                <a class="link link--thick" href="{% url 'projects:project_detail' project.slug %}">View Project</a></div>
+                                                <a class="link" href="{% url 'projects:project_detail' project.slug %}">View Project</a></div>
                                         </div>
                                     {% endfor %}
                                 </div>

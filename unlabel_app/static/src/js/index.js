@@ -17,7 +17,15 @@ import LocomotiveScroll from './modules/ScrollManager'
 
 class App {
   constructor() {
-    console.log('[Unlabel App]');
+    // Signature
+    if (navigator.userAgent.toLowerCase().indexOf('chrome') > -1) {
+        const args = ['\n %c Built with <3, by Unlabel. https://unlabel.us/ \n\n', 'background: #DEEDEE; padding:5px 0; color: #232323;'];
+        
+        window.console.log.apply(console, args);
+
+    } else if (window.console) {
+        window.console.log('[Built with <3, by Unlabel.]');
+    }
 
     this.browserCheck()
     this.initAnimations()
@@ -40,7 +48,7 @@ class App {
         container: $('.unlabel-scroll'),
         selector: '.js-scroll',
         smooth: true,
-        smoothMobile: false,
+        smoothMobile: true,
         mobileContainer: $(document),
         getWay: false,
         getSpeed: false

@@ -162,6 +162,7 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 # Your stuff: custom template context processors go here
                 'config.context_processors.site_processor',
+                'config.context_processors.consts',
             ],
         },
     },

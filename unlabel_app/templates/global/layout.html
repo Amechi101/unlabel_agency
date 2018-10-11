@@ -2,7 +2,6 @@
 {% load staticfiles %}
 
 {% block styles %}
-{{ debug }}
     {% if debug %}
         <link rel="stylesheet" type="text/css" href="{% static 'dist/css/bundle.css' %}" />
     {% else %}
@@ -29,7 +28,7 @@
     <meta name="twitter:image:height" content="600">
     {% block twitter_extra_tags %}
         <meta name="twitter:title" content="Style, Introduced.">
-        <meta name="twitter:description" content="Unlabel is a digital agency focused on driving growth, forging creative partnerships &amp; providing innovative technology solutions for fashion, lifestyle &amp; retail brands.">
+        <meta name="twitter:description" content="Unlabel is a studio focused on driving growth, forging creative partnerships &amp; providing innovative technology solutions for creative individuals + lifestyle &amp; fashion brands.">
         <meta name="twitter:image" content="{% static 'dist/img/temp/home-visual.jpg' %}">
     {% endblock %}
 {% endblock %}
@@ -41,7 +40,7 @@
 
         {% block content_wrapper %}
             {# Div exists for AJAX updates to entire content section #}
-            <main role="main" id="content_inner" class="{% block content_classnames %}{% endblock %}">
+            <main id="content_inner" class="{% block content_classnames %}{% endblock %}">
                 {% block content %}{% endblock %}
             </main>
         {% endblock %}

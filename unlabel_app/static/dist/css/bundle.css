@@ -105,7 +105,7 @@ body {
   content: "";
   background: #fff;
   transform: scale(1, 1);
-  transition: transform 250ms cubic-bezier(0.19, 1, 0.22, 1);
+  transition: transform 0.9s cubic-bezier(0.84, -0.01, 0.48, 0.995);
 }
 .dom-is-loaded .js-scroll-mask-right:after {
   transform-origin: top right;
@@ -115,6 +115,7 @@ body {
 }
 .dom-is-loaded .js-scroll-mask.is-show:after {
   transform: scale(0, 1);
+  transition: transform 0.9s cubic-bezier(0.84, -0.01, 0.48, 0.995);
 }
 .has-smooth-scroll .unlabel-scroll {
   height: 100vh;

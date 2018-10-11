@@ -30,10 +30,12 @@
     "domready": "1.0.8",
     "events": "1.1.1",
     "gsap": "1.19.1",
+    "jquery-lazy": "^1.7.10",
     "scrollmagic": "2.0.5",
     "smooth-scrollbar": "locomotivemtl/smooth-scrollbar#develop",
     "swiper": "3.4.2",
     "tabbable": "1.0.6",
+    "vanilla-lazyload": "^8.17.0",
     "zxcvbn": "4.4.2"
   },
   "babel": {

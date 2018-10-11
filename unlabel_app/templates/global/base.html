@@ -95,7 +95,11 @@
 
         {# Local scripts #}
         {% block scripts %}
-            <script src="{% static 'dist/js/bundle.js' %}"></script>
+            {% if debug %}
+                <script src="{% static 'dist/js/bundle.js' %}"></script>
+            {% else %}
+                <script src="{% static 'dist/js/bundle.min.js' %}"></script>
+            {% endif %}
         {% endblock %}
 
         {# Additional JS scripts #}

@@ -2,7 +2,12 @@
 {% load staticfiles %}
 
 {% block styles %}
-    <link rel="stylesheet" type="text/css" href="{% static 'dist/css/bundle.css' %}" />
+{{ debug }}
+    {% if debug %}
+        <link rel="stylesheet" type="text/css" href="{% static 'dist/css/bundle.css' %}" />
+    {% else %}
+        <link rel="stylesheet" type="text/css" href="{% static 'dist/css/bundle.min.css' %}" />
+    {% endif %}
 {% endblock %}
 
 {% block social_meta_tags %} 

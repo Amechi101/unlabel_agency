@@ -6,8 +6,11 @@
 
 .about__header {
   @media $mq_m {
-    display: flex
     padding: 0 96px
+  }
+
+  @media $mq_l {
+    display: flex
   }
 }
 
@@ -55,9 +58,9 @@
 .about__storyDesc {
   z-index: 0
   position: relative
-  background-color: $color_product;
-  color: $color_product !important;
-  padding: 44px 48px 48px 24px
+  background-color: $color_product
+  height: 400px
+  padding: 0
   
   @media $mq_s_only {
     transform: translate(-24px, 0) // sticked to border
@@ -97,9 +100,9 @@
     width: auto
     height: 100%
     
-    @media $mq_s_only {
+    /*@media $mq_s_only {
       transform: translate(112px, 0)
-    }
+    }*/
   }
 }
 

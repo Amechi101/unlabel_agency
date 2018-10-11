@@ -8,15 +8,12 @@
     {% trans 'Projects' %} | {{ block.super }}
 {% endblock %}
 
-{% block social_meta_tags %}
-    {{ block.super }}
-{% endblock %}
 
-{% block body_id %}work{% endblock %}
-{% block body_class %}work{% endblock %}
+{% block body_id %}projects-page{% endblock %}
+{% block body_class %}projects-page{% endblock %}
 
 {% block before_layout %}
-    {% trans "Our Work" as triptych_title %}
+    {% trans "Our Projects" as triptych_title %}
     {% include "projects/partials/projects_triptych.html" with triptych_title=triptych_title triptych_isBigTitle=True triptych_isWrapperThinner=True triptych_isContentDesktopOnly=True %}
 {% endblock before_layout %}
 
@@ -48,7 +45,7 @@
                                     </div>
                                     <figcaption>
                                         <h2>{{ project.title }}</h2>
-                                        <p>{{ project.client_name }}</p>
+                                        <p><small>{{ project.client_name }}</small></p>
                                     </figcaption>
                                 </figure>
                             </a>

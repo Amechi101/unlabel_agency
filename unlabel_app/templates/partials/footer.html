@@ -14,10 +14,16 @@
             </a>
             <ul class="footer__navList">
                 <li>
-                    <a class="link link--thick link--discrete" href="{% url 'projects:projects' %}" title="{% trans 'Work' %}">{% trans 'Projects' %}</a>
+                    <a class="link link--thick link--discrete" href="/">{% trans 'Home' %}</a>
                 </li>
                 <li>
-                    <a class="link link--thick link--discrete" href="{% url 'contact' %}" title="{% trans 'Contact' %}">{% trans 'Contact' %}</a>
+                    <a class="link link--thick link--discrete" href="#">{% trans 'About' %}</a>
+                </li>
+                <li>
+                    <a class="link link--thick link--discrete" href="{% url 'projects:projects' %}">{% trans 'Projects' %}</a>
+                </li>
+                <li>
+                    <a class="link link--thick link--discrete" href="{% url 'contact' %}">{% trans 'Contact' %}</a>
                 </li>
             </ul>
         </nav>
@@ -25,16 +31,16 @@
     <div class="footer__bar footer__bar--bottom cols cols--align-middle">
         <div class="footer__copyright"><span class="footer__copyrightSymbol">©</span>{% now 'Y' %} {% trans 'Unlabel. All rights reserved' %}</div>
         <nav class="footer__nav footer__nav--secondary">
-            <ul class="footer__navList footer__navList--legal">
+            <!-- <ul class="footer__navList footer__navList--legal">
                 <li>
                     <a href="" title="">{% trans 'info@unlabel.us' %}</a>
                 </li>
-            </ul>
-            <ul class="footer__navList footer__navList--social">
+            </ul> -->
+            <!-- <ul class="footer__navList footer__navList--social">
                 <li>
                     <a href="https://www.instagram.com/unlabel_us/" target="_blank" title="{% trans 'Instagram' %}"><span class="fonticon fonticon--instagram fonticon--smallBox"></span></a>
                 </li>
-            </ul>
+            </ul> -->
         </nav>
     </div>
 </footer>

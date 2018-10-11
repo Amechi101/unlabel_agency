@@ -9,6 +9,9 @@
     {{ project.title }} | {{ block.super }}
 {% endblock %}
 
+{% block body_id %}project-detail{% endblock %}
+{% block body_class %}project-detail{% endblock %}
+
 {% block social_meta_tags %}
     {{ block.super }}
 
@@ -32,18 +35,18 @@
     <section class="invite__header">
         <div class="container">
             <div class="invite__headerWrapper">
-                <div class="invite__headerTitleContainer js-scroll" style="z-index: 100;">
+                <div class="invite__headerTitleContainer">
                     <h1 class="title title--caps">{{ project.title }}</h1>
                 </div>
-                <div class="invite__headerVisualContainer js-scroll" data-speed="2">
-                    <img src="{% cloudinary_url project.cover_image %}" alt="{{ project.ttile }}">
+                <div class="invite__headerVisualContainer js-scroll" data-speed="1">
+                    <img src="{% cloudinary_url project.cover_image %}" alt="{{ project.title }}">
                 </div>
             </div>
         </div>
     </section>
 
     <section class="invite__descContainer">
-        <div class="container container--medium js-scroll">
+        <div class="container container--medium">
             <div class="desc">
                 {{ project.description|safe }} 
             </div>
@@ -52,8 +55,8 @@
 
     <section class="invite__contact">
         <div class="container container--medium">
-            <div class="invite__contactWrapper js-scroll">
-                <p class="invite__contactLabel">Unlabel provided: {{project.services}}</p>
+            <div class="invite__contactWrapper">
+                <p class="invite__contactLabel">{{project.services}}</p>
                 <div class="share" style="margin-top: 50px;">
                     <p class="share__title">{% trans 'Share' %}</p>
                     <ul class="share__list">
@@ -78,7 +81,7 @@
     <section class="home__header">
         <div class="container">
             {% for images in project_images %}
-                <div class="home__headerWrapper js-scroll js-scroll-mask js-scroll-mask-right" data-speed="1">
+                <div class="home__headerWrapper">
                     <div class="visual">
                         <img src="{% cloudinary_url images.image GENERAL_IMAGES %}" alt="{{ project.title }}">
                     </div>
@@ -88,7 +91,7 @@
     </section>
    
     {% trans "More Projects" as triptych_title %}
-    {% include "projects/partials/project_detail_triptych.html" with triptych_title=triptych_title triptych_isWrapperWider=True %}
+    {% include "projects/partials/projects_triptych.html" with triptych_title=triptych_title triptych_isWrapperWider=True %}
 
 {% endblock content %}
 

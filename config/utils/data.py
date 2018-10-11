@@ -386,13 +386,10 @@ INDUSTRIES_CHOICES = tuple(sorted(INDUSTRIES, key=lambda industires: industires[
 # PRODUCT CATEGORIES
 # ------------------------------------------------------------------------------
 SERVICES = (
-    ('TEC', _('Technology')),
-    ('SAL', _('Sales')),
-    ('COC', _('Content Creation')),
-    ('DES', _('Design')),
-    ('CON', _('Consultation')),
-    ('STR', _('Strategy')),
-    ('INF', _('Influence')),
+    ('TECH', _('Technology')),
+    ('CONT', _('Content')),
+    ('DESI', _('Design')),
+    ('INFL', _('Influence')),
 )
 SERVICES_CHOICES = tuple(sorted(SERVICES, key=lambda services: services[1]))
  

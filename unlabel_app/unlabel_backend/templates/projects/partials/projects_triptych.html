@@ -2,12 +2,12 @@
 {% load staticfiles %}
 {% load cloudinary %}
 
-{% block triptych_extraClasses %}color-context color-context--creators{% endblock %}
+{% block triptych_extraClasses %}color-context color-context--brands{% endblock %}
 
 {% block triptych_content %}
 	<ul class="cols cols--m-3">
 		{% for project in projects_triptych %}
-			<li class="col js-scroll" data-speed="2">
+			<li class="col">
 				<a href="{% url 'projects:project_detail' project.slug %}" class="triptych__itemLink">
 					<figure>
 						<div class="img-container img-container--portrait">

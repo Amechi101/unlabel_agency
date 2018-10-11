@@ -10,7 +10,7 @@
 
         <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
         <meta name="created" content="{% now "jS M Y h:i" %}" />
-        <meta name="description" content="{% block meta_description %}Unlabel is a digital agency focused on driving growth, forging creative partnerships &amp; providing innovative technology solutions for fashion, lifestyle &amp; retail brands.{% endblock %}" />
+        <meta name="description" content="{% block meta_description %}Unlabel is a studio focused on driving growth, forging creative partnerships &amp; providing innovative technology solutions for creative individuals + lifestyle &amp; fashion brands.{% endblock %}" />
         <meta name="viewport" content="{% block viewport %}width=device-width{% endblock %}" />
         <meta name="robots" content="NOARCHIVE,NOCACHE" />
 
@@ -57,36 +57,32 @@
     </head>
 
     <body id="{% block body_id %}{% endblock %}" class="{% block body_class %}{% endblock %}">
-        
-        <!-- // page loading -->
-        <div class="preloader-wrap pos-f-t-l full-size" data-active="true" data-preloader-on="off">
-            <div class="preloader-bg pos-a full-size"></div>
-            
-            <div class="preloader-elements pos-a">
-                <div class="title">
-                    <span>U</span>
-                    <span>N</span>
-                    <span>L</span>
-                    <span>A</span>
-                    <span>B</span>
-                    <span>E</span>
-                    <span>L</span>
-                </div>
 
-                <div class="text">
-                    <p>Style, Introduced<span>.</span></p>
-                </div>
-                <div class="logo">
-                    <img src="{% static 'dist/img/logo_full.svg' %}">
-                </div>
+        <!-- // page loading -->
+        <div class="preloader">
+            <div class="preloader-wrap">
+                <div class="preloader-elements">
+                    <div class="preloader-logo">
+                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                             width="100px" height="60px" viewBox="0 0 35.5 35.5" enable-background="new 0 0 35.5 35.5" xml:space="preserve">
+                        <path fill="#010101" d="M17.7,0C7.9,0,0,7.9,0,17.7c0,9.8,7.9,17.7,17.7,17.7c9.8,0,17.7-7.9,17.7-17.7C35.5,7.9,27.5,0,17.7,0z
+                             M27.9,23.9h-8v-6.1l-8.6,9.7l-1.9-1.6l3.2-3.9C10,22,7.9,20.5,7.9,17.6v-6.6h3v6.6c0,1.3,0.7,2,2,2c1.3,0,2-0.7,2-2v-6.6h3v5.4
+                            L25,8l2,1.6l-4.1,4.8v7.6h5V23.9z"/>
+                        </svg>
+                    </div>
+                    <p class="preloader-text">
+                        <span class="u-block">Style, Introduced.</span>
+                        <span id="progstat" class="u-block">00</span>
+                    </p>
+                </div> 
             </div>
         </div>
         <!--// page loading -->
 
         <!-- // page sweeper -->
-        <div class="page-sweeper page-sweeper-under pos-f-t-l full-size" data-active="false"><div></div></div>
-        <div class="page-sweeper pos-f-t-l full-size" data-active="false"><div></div></div>
+        <div class="page-sweeper" data-active="false"><div></div></div>
         <!-- // page sweeper -->
+       
         
         {# Main content goes in this 'layout' block #}
         {% block layout %}{% endblock %}
@@ -94,26 +90,16 @@
         {# Scripts loaded from a CDN. #}
         {% block cdn_scripts %}
             <!-- jQuery -->
-            <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
         {% endblock %}
 
         {# Local scripts #}
         {% block scripts %}
             <script src="{% static 'dist/js/bundle.js' %}"></script>
-            <script src="{% static 'dist/js/vendors/is.js' %}"></script>
-            <script src="{% static 'dist/js/vendors/TweenMax.min.js' %}"></script>
-            <script src="{% static 'dist/js/custom-animation.js' %}"></script>
         {% endblock %}
 
         {# Additional JS scripts #}
         {% block extrascripts %}{% endblock %}
-
-        {# Block for body onload functions #}
-        <script type="text/javascript">
-            $(function() {
-                {% block onbodyload %}{% endblock %}
-            });
-        </script>
     </body>
 </html>
 

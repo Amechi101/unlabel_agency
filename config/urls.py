@@ -3,7 +3,7 @@ from django.urls import include, path
 from django.contrib import admin
 from django.views.generic.base import TemplateView
 from django.views import defaults as default_views
-from .views import HomePageView
+from .views import HomePageView, AboutPageView
 
 
 urlpatterns = [
@@ -18,6 +18,7 @@ urlpatterns = [
     path('', include('unlabel_app.unlabel_backend.urls')),
 
     # PAGES
+    path('about/', AboutPageView.as_view(), name="about"),
     path('contact/', TemplateView.as_view(template_name='pages/contact.html'), name="contact"),
 ]
 

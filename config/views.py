@@ -12,10 +12,16 @@ class HomePageView(TemplateView):
     template_name = 'pages/home.html'
 
     def get_context_data(self, **kwargs):
-        kwargs['projects_left'] = Project.objects.all().order_by('-created')[0:1]
+        kwargs['projects'] = Project.objects.all().order_by('-created')[0:5]
 
-        kwargs['projects_middle'] = Project.objects.all().order_by('-created')[1:2]
+        return super().get_context_data(**kwargs)
 
-        kwargs['projects_right'] = Project.objects.all().order_by('-created')[2:4]
+
+class AboutPageView(TemplateView):
+
+    template_name = 'pages/about.html'
+
+    def get_context_data(self, **kwargs):
+        kwargs['projects_triptych'] = Project.objects.all().order_by('-created')[0:3]
 
         return super().get_context_data(**kwargs)

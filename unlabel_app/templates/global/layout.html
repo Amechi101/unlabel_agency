@@ -14,7 +14,7 @@
     <meta property="og:site_name" content="{{ site.name }}l">
     {% block facebook_extra_tags %}
         <meta property="og:title" content="{{ site.name }} | Style, Introduced.">
-        <meta property="og:description" content="Unlabel is a digital agency focused on driving growth, forging creative partnerships &amp; providing innovative technology solutions for fashion, lifestyle &amp; retail brands.">
+        <meta property="og:description" content="Unlabel is a studio focused on driving growth, forging creative partnerships &amp; providing innovative technology solutions for creative individuals + lifestyle &amp; fashion brands.">
         <meta property="og:image:secure_url" content="{% static 'dist/img/temp/home-visual.jpg' %}">
         <meta property="og:image" content="{% static 'dist/img/temp/home-visual.jpg' %}">
     {% endblock %}
@@ -31,6 +31,7 @@
 
 {% block layout %}
     <div id="app" class="unlabel-scroll">
+
         {% include "partials/header.html" %}
 
         {% block content_wrapper %}
@@ -58,7 +59,3 @@
     {{ block.super }}
 {% endblock %}
 
-{% block onbodyload %}
-    {{ block.super }}
-    <!-- Init calls here -->
-{% endblock %}

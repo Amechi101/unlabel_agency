@@ -12,10 +12,12 @@ import Basket from './components/basket'
 import FileInput from './components/fileinput'
 import SelectNav from './components/select-nav'
 import HeaderSubmenu from './components/header-submenu'
+import PageLoading from './components/page-loading'
+import LocomotiveScroll from './modules/ScrollManager'
 
 class App {
   constructor() {
-    console.log('[Unlabel App] !')
+    console.log('[Unlabel App]');
 
     this.browserCheck()
     this.initAnimations()
@@ -29,6 +31,21 @@ class App {
     TweenMax.defaultEase = Power3.easeOut
   }
   initComponents() {
+
+    //Page Loading
+    new PageLoading();
+
+    // Locomotive Scroll
+    new LocomotiveScroll({
+        container: $('.unlabel-scroll'),
+        selector: '.js-scroll',
+        smooth: true,
+        smoothMobile: false,
+        mobileContainer: $(document),
+        getWay: false,
+        getSpeed: false
+    });
+
     // Gallery
     const galleries_arr = [].slice.call(document.querySelectorAll('.gallery'))
     galleries_arr.forEach((el) => {
@@ -37,7 +54,7 @@ class App {
       })
     })
 
-    // Sizeharts
+        // Sizeharts
     const sizecharts_arr = [].slice.call(document.querySelectorAll('.sizechart'))
     sizecharts_arr.forEach((el) => {
       new SizeChart({
@@ -64,6 +81,7 @@ class App {
       })
     })
 
+
     // Password Security
     const passwordSecurity_arr = [].slice.call(document.querySelectorAll('.password-security'))
     passwordSecurity_arr.forEach((el) => {
@@ -71,6 +89,7 @@ class App {
         el: el
       })
     })
+
 
     // Carousel
     const carousel_arr = [].slice.call(document.querySelectorAll('.carousel'))

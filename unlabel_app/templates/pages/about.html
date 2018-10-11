@@ -7,91 +7,98 @@
     {% trans 'About' %} | {{ block.super }}
 {% endblock %}
 
-{% block social_meta_tags %}
-    {{ block.super }}
-{% endblock %}
+{% block body_id %}about-page{% endblock %}
+{% block body_class %}about-page{% endblock %}
+
+
+{% block content_classnames %}color-context color-context--creators{% endblock %}
 
 {% block content %}
-	<div class="about">
-		<div class="container container--m-pad">
-			<div class="about__header">
-				<div class="about__titleContainer js-scroll c-mask" data-speed="1">
-					<h2 class="title title--caps title--destructured">
-						<span class="u-block">Our</span>
-						<span class="u-block">sto-</span>
-						<span class="u-block">&nbsp;&nbsp;ry</span>
-					</h2>
-					<div class="logo">
-					    <span class="logo__icon">
-					        <img src="{% static 'unlabel/dist/img/logo_dark.svg' %}" alt="Unlabel Logo">
-					    </span>
-					</div>
-				</div>
-				<div class="about__descContainer c-mask">
-					<p class="desc">Unlabel began with a love for fashion, design, and authentic online experiences for fashion lovers. Originally inspired by the diverse fashion scenes of NYC and Los Angeles, Unlabel grew into the agency it is today. We believe in introducing a sense of style in everything that we do.</p>
-				</div>
-			</div>
+	<header class="invite__header">
+	  <div class="container">
+	      <div class="invite__headerWrapper">
+	          <div class="invite__headerTitleContainer js-scroll" data-speed='1'>
+	              <h1 class="title title--caps">{% trans "Our<br> Studio." %}</h1>
+	          </div>
+	          <div class="invite__headerVisualContainer js-scroll" data-speed='2'>
+	              <img src="{% static 'dist/img/temp/home-visual.jpg' %}" alt="{% trans 'Unlabel Visual' %}">
+	          </div>
+	      </div>
+	  </div>
+	</header>
 
-			<div class="about__story">
-				<div class="about__storyDesc js-scroll" data-speed="2">
-					<p><strong>Where words fail style prevails and picks up the conversation. “Style” is the shared look with the stranger from across the room that says, “hello.” 
-					<br>
-					<br>
-					Ask yourself, ‘how is it that people really communicate today?’ We at “Unlabel” would argue that the phrase “word of mouth” actually means “word of like” nowadays. “Our”... meaning human beings landscape of communication has been favorably altered by a social media dominated experience. Furthermore, that social media experience is unfavorably dominated by the major, big budget, confining powers of commercial influence!... NOT. ANY. MORE.</strong></p>
+	<div class="invite__descContainer">
+	  <div class="container container--medium">
+	      <div class="desc">
+	          {% trans 'Founded in 2018 and based in NYC, we are an eclectic group of creatives that combine a broad range of expertise from technology, advertising, fashion & film industries to introduce a sense of unique style for every project. Through discovery sessions we find out what makes a brand tick and break down each problem into modules to figure out the most effective path to a solution.' %}
+	      </div>
+	  </div>
+	</div>
 
-					<p>We believe that culture is a conversation not a commodity to be produced and distributed. That conversation happens daily throughout the world and shapes the world around us. It is our #1 goal to foster that conversation and bring it to as many people around the world as possible, striving to create authentic and unique experiences that communicate and drive healthy and sustainable change.</p>
-				</div>
-				<div class="about__storyVisual js-scroll"  data-speed="-2">
-					<img src="{% static 'unlabel/dist/img/temp/the_street_sensei.jpg' %}" alt="Unlabel Story Visual">
-				</div>
-			</div>
+	<div class="invite__contact">
+	  <div class="container container--medium">
+	      <p class="invite__contactWrapper">
+	          <span class="invite__contactLabel">{% trans "Ready to start your next project?<br><br>Take a look at some of our services below and lets get started working together to build your dream." %}</span>
+	          <br>
+	          <br>
+	          <a href="mailto:info@unlabel.us">info@unlabel.us</a>
+	      </p>
+	  </div>
+	</div>
 
-			<div class="about__carousel carousel">
-				<div class="swiper-container carousel_visualsSlider about__carouselVisualsSlider">
-					<div class="swiper-wrapper">
-						{% for cap in capabilities %}
-							<div class="swiper-slide">
-								<div class="visual visual--wideLandscape">
-									<img src="{% cloudinary_url cap.image %}" alt="{{ cap.name }}">
-								</div>
-							</div>
-						{% endfor %}
-					</div>
-				</div>
-				<div class="about__carouselFooter">
-					<div class="swiper-container carousel_contentsSlider about__carouselContentsSlider">
-						<div class="swiper-wrapper">
-							{% for cap in capabilities %}
-								<div class="swiper-slide">
-									<span class="carousel_contentItem title title--medium">At Unlabel our capabilities are the pillars that keep our foundation strong. We provide brands with {{ cap.name }}.</span>
-								</div>
-							{% endfor %}
-						</div>
-					</div>
-					<div class="swiper-container carousel__backgroundsSlider about__carouselBgSlider">
-						<div class="swiper-wrapper">
-							{% for cap in capabilities %}
-								<div class="swiper-slide">
-									<div class="carousel__bgSlide" style="background-color: {% cycle '#EDDDDD' '#DEEDEE' '#DDE0ED' '#F5E5D9' %};"></div>
-								</div>
-							{% endfor %}
-						</div>
-					</div>
-					<div>
-						<a class="carousel__btn carousel__btn--prev" href="#prev"><span class="fonticon fonticon--smallBox fonticon--carouselArrowLeft"></span></a><a class="carousel__btn carousel__btn--next" href="#next"><span class="fonticon fonticon--smallBox fonticon--carouselArrowRight"></span></a>
-					</div>
-				</div>
-			</div>
-
-			<div class="about__footer">
-				<div class="logo">
-				    <span class="logo__icon">
-				        <img src="{% static 'unlabel/dist/img/logo_dark.svg' %}" alt="Unlabel Logo">
-				    </span>
-				</div>
-				<h2 class="title title--small">{% trans "Style, Introduced." %}</h2>
-			</div>
-
+	<div class="invite__list">
+		<div class="container container--medium">
+	      	<div class="cols cols--m-2 cols--m-gutter32">
+	          	<div class="col">
+	              <div class="invite__listItem">
+	                  <h3 class="title title--small">Technology</h3>
+	                  <div class="invite__listItemDesc">
+							<li>Full Stack Development</li>
+							<li>Websites & Web Applications</li>
+							<li>Mobile & App Development</li>
+							<li>E-Commerce</li>
+							<li>CMS</li>
+	                  </div>
+	              </div>
+	              <div class="invite__listItem">
+	                  <h3 class="title title--small">Design</h3>
+	                  <div class="invite__listItemDesc">
+	                  		<li>Web &amp; Mobile UI</li>
+	                  		<li>Art Direction</li>
+	                  		<li>Interaction Design</li>
+	                  		<li>Logo & Identity</li>
+	                  		<li>Brand Books & Style Guides</li>
+	                  		<li>User Experience Web Design</li>
+							<li>Print & Publication Design</li>
+							<li>Packaging</li>
+	                  </div>
+	              </div>
+	          	</div>
+	          	<div class="col col--right">
+	              	<div class="invite__listItem">
+	                  <h3 class="title title--small">Influence</h3>
+	                  <div class="invite__listItemDesc">
+	                      <li>Influencer Collaborations</li>
+	                      <li>Social Media Campaigns</li>
+	                      <li>Campaign Management</li>
+	                      <li>Creative Concepts & Ideas</li>
+	                      <li>Storytelling</li>
+	                  </div>
+	            	</div>
+	             	<div class="invite__listItem">
+	                	<h3 class="title title--small">Content</h3>
+	                	<div class="invite__listItemDesc">
+							<li>Copywriting</li>
+							<li>Photo Production</li>
+							<li>Video Production</li>
+							<li>Product Production</li>
+	                  	</div>
+	           		</div>
+	        	</div>
+	      	</div>
 		</div>
 	</div>
+
+	{% trans "Recent Projects" as triptych_title %}
+  	{% include "projects/partials/projects_triptych.html" with triptych_title=triptych_title triptych_isWrapperWider=True %}
 {% endblock content %}

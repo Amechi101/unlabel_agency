@@ -12,121 +12,111 @@
 {% block body_class %}homepage{% endblock %}
 
 {% block content %}
-    <div class="container container--m-pad">
+    <section class="about"> 
+        <div class="container container--m-pad">
             <div class="about__header">
-                <div class="about__titleContainer js-scroll c-mask" data-speed="1">
+                <div class="about__titleContainer js-scroll" data-speed="1">
                     <h2 class="title title--caps title--destructured">
-                        <span class="u-block">UNLA-</span>
-                        <span class="u-block">&nbsp;&nbsp;bel</span>
+                        <span class="u-block">He-</span>
+                        <span class="u-block">llo.</span>
                     </h2>
-                    <div class="logo">
-                        <span class="logo__icon">
-                            <img src="{% static 'dist/img/logo_full.svg' %}" alt="Unlabel Logo">
-                        </span>
-                    </div>
                 </div>
-                <div class="about__descContainer c-mask">
-                    <p class="desc">Unlabel began with a love for fashion, design, and authentic online experiences for fashion lovers. Originally inspired by the diverse fashion scenes of NYC and Los Angeles, Unlabel grew into the agency it is today. We believe in introducing a sense of style in everything that we do.</p>
+                <div class="about__descContainer">
+                    <p class="desc">{% trans 'Unlabel began with a love for fashion, design, and authentic online experiences for fashion lovers. Originally inspired by the diverse fashion scenes of NYC and Los Angeles, Unlabel grew into a multi-disciplinary studio. We believe in introducing a sense of style in everything that we do.' %}</p>
                 </div>
             </div>
 
             <div class="about__story">
-                <div class="about__storyDesc js-scroll" data-speed="2">
-                    <p><strong>Where words fail style prevails and picks up the conversation. “Style” is the shared look with the stranger from across the room that says, “hello.” 
-                    <br>
-                    <br>
-                    Ask yourself, ‘how is it that people really communicate today?’ We at “Unlabel” would argue that the phrase “word of mouth” actually means “word of like” nowadays. “Our”... meaning human beings landscape of communication has been favorably altered by a social media dominated experience. Furthermore, that social media experience is unfavorably dominated by the major, big budget, confining powers of commercial influence!... NOT. ANY. MORE.</strong></p>
-
-                    <p>We believe that culture is a conversation not a commodity to be produced and distributed. That conversation happens daily throughout the world and shapes the world around us. It is our #1 goal to foster that conversation and bring it to as many people around the world as possible, striving to create authentic and unique experiences that communicate and drive healthy and sustainable change.</p>
-                </div>
-                <div class="about__storyVisual js-scroll"  data-speed="-2">
-                    <img src="{% static 'dist/img/temp/the_street_sensei.jpg' %}" alt="Unlabel Story Visual">
-                </div>
-            </div>
-
-    <section class="home__creators color-context color-context--creators">
-
-        <div class="home__CreatorsBg js-scroll js-scroll-mask js-scroll-mask-right"></div>
-
-        <div class="container">
-            <div class="home__creatorsCols">
-                <div class="home__creatorsCol home__creatorsCol--left" >
-                    {% for project in projects_left %}
-                        <article class="home_creatorGridItem js-scroll" data-speed="1">
-                            <a href="{% url 'projects:project_detail' project.slug %}" class="u-block" title="{{ project.title }}">
-                                <figure>
-                                    <div class="img-container img-container--portrait">
-                                        <img src="{% cloudinary_url project.cover_image GENERAL_IMAGES %}" alt="{{ project.title }}" />
-                                    </div>
-                                    <figcaption>
-                                        <h3>{{ project.title }}</h3>
-                                        <p><small>{{ project.client_name }}</small></p>
-                                    </figcaption>
-                                </figure>
-                            </a>
-                        </article>
-                    {% endfor %}
-                    <div class="home__creatorsTitleContainer js-scroll" data-speed="1">
-                        <h2 class="title title--caps">{% trans 'Recent<br> Work' %}</h2>
-                    </div>
-                    <div class="home__creatorsCtaContainer js-scroll" data-speed="1">
-                        <a class="cta cta--dark" href="{% url 'projects:projects' %}">{% trans 'View All Work' %}</a>
-                    </div>
-                    <div class="home__creatorsSubtitleContainer js-scroll" data-speed="-1">
-                        <div class="subtitle subtitle--medium home_creatorGridItem">{% trans 'Every project is completed with quality, style and uniqueness.' %}</div>
-                    </div>
-                </div>
-                <div class="home__creatorsCol home__creatorsCol--middle">
-                    {% for project in projects_middle %}
-                        <article class="home_creatorGridItem js-scroll" data-speed="-1">
-                            <a href="{% url 'projects:project_detail' project.slug %}" class="u-block">
-                                <figure>
-                                    <div class="img-container img-container--portrait">
-                                        <img src="{% cloudinary_url project.cover_image GENERAL_IMAGES %}" alt="{{ project.title }}" />
-                                    </div>
-                                    <figcaption>
-                                        <h3>{{ project.title }}</h3>
-                                        <p><small>{{ project.client_name }}</small></p>
-                                    </figcaption>
-                                </figure>
-                            </a>
-                        </article>
-                    {% endfor %}
-                </div>
-                <div class="home__creatorsCol home__creatorsCol--right u-desktop-only">
-                    {% for project in projects_right %}
-                        <article class="home_creatorGridItem js-scroll" data-speed="1">
-                            <a href="{% url 'projects:project_detail' project.slug %}" class="u-block">
-                                <figure>
-                                    <div class="img-container img-container--portrait">
-                                        <img src="{% cloudinary_url project.cover_image GENERAL_IMAGES %}" alt="{{ project.title }}" />
-                                    </div>
-                                    <figcaption>
-                                        <h3>{{ project.title }}</h3>
-                                        <p><small>{{ project.client_name }}</small></p>
-                                    </figcaption>
-                                </figure>
-                            </a>
-                        </article>
-                    {% endfor %}
+                <div class="about__storyDesc js-scroll" data-speed="1"></div>
+                <div class="about__storyVisual js-scroll" data-speed="-1">
+                    <img src="{% static 'dist/img/temp/homepage-visual.jpg' %}" alt="Unlabel Story Visual" />
                 </div>
             </div>
         </div>
     </section>
 
+    <section class="home__creators color-context color-context--creators">
+        <div class="home__CreatorsBg js-scroll js-scroll-mask js-scroll-mask-right"></div>
+
+        <div class="container">
+            <div class="home__creatorsCols">
+                <div class="home__creatorsCol home__creatorsCol--left">
+                    <article class="home_creatorGridItem">
+                        <figure>
+                            <div class="img-container img-container--portrait">
+                                <img src="{% static 'dist/img/temp/tech.jpg' %}" alt="Technology" />
+                            </div>
+                            <figcaption>
+                                <h3>{% trans 'We help you build your dream product' %}</h3>
+                                <p><small>{% trans 'Technology' %}</small></p>
+                            </figcaption>
+                        </figure>
+                    </article>
+                    <div class="home__creatorsTitleContainer">
+                        <h2 class="title title--caps">{% trans 'Our<br> Studio' %}</h2>
+                    </div>
+                    <div class="home__creatorsCtaContainer">
+                        <a class="cta cta--dark" href="">{% trans 'Discover Unlabel' %}</a>
+                    </div>
+                    <div class="home__creatorsSubtitleContainer">
+                        <div class="subtitle subtitle--medium home_creatorGridItem">{% trans 'Every project is completed with quality, style and uniqueness.' %}</div>
+                    </div>
+                </div>
+                
+                <div class="home__creatorsCol home__creatorsCol--middle js-scroll" data-speed='2'>
+                    <article class="home_creatorGridItem">
+                        <figure>
+                            <div class="img-container img-container--portrait">
+                                <img src="{% static 'dist/img/temp/design.jpg' %}" alt="Design" />
+                            </div>
+                            <figcaption>
+                                <h3>{% trans 'We design to engage and delight your customers' %}</h3>
+                                <p><small>{% trans 'Design' %}</small></p>
+                            </figcaption>
+                        </figure>
+                    </article>
+                </div>
+                <div class="home__creatorsCol home__creatorsCol--right u-desktop-only">
+                    <article class="home_creatorGridItem">
+                        <figure>
+                            <div class="img-container img-container--portrait">
+                                <img src="{% static 'dist/img/temp/influence.jpg' %}" alt="Influence" />
+                            </div>
+                            <figcaption>
+                                <h3>{% trans 'We help you get the word out about your brand' %}</h3>
+                                <p><small>{% trans 'Influence' %}</small></p>
+                            </figcaption>
+                        </figure>
+                    </article>
+                    <article class="home_creatorGridItem">
+                        <figure>
+                            <div class="img-container img-container--portrait">
+                                <img src="{% static 'dist/img/temp/content.jpg' %}" alt="Content" />
+                            </div>
+                            <figcaption>
+                                <h3>{% trans 'We create content that keeps your customers coming back for more' %}</h3>
+                                <p><small>{% trans 'Content' %}</small></p>
+                            </figcaption>
+                        </figure>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </section>
+   
     <section class="home__brands color-context color-context--brands">
         <div class="container">
-            <h2 class="home__brandsTitle title title--caps js-scroll">{% trans 'Our<br class="u-desktop-only"/> Services' %}</h2>
+            <h2 class="home__brandsTitle title title--caps">{% trans 'Our<br class="u-desktop-only"/> Projects' %}</h2>
 
             <div class="home__brandsCarousel carousel">
                 <div class="cols cols--m cols--align-left cols--align-top">
                     <div class="col brands__carouselColLeft">
-                        <div class="swiper-container carousel_visualsSlider home__brandsVisualsSlider js-scroll" data-speed="-2">
+                        <div class="swiper-container carousel_visualsSlider home__brandsVisualsSlider">
                             <div class="swiper-wrapper">
-                                {% for client in clients %}
-                                    <div class="swiper-slide js-scroll" data-speed="2">
+                                {% for project in projects %}
+                                    <div class="swiper-slide">
                                         <div class="visual visual--landscape">
-                                            <img src="{% cloudinary_url client.image GENERAL_IMAGES %}" alt="{{ client.name }}">
+                                            <img src="{% cloudinary_url project.cover_image %}" alt="{{ project.title }}">
                                         </div>
                                     </div>
                                 {% endfor %}
@@ -136,7 +126,7 @@
                     <div class="col brands__carouselColRight">
                         <div class="swiper-container carousel__backgroundsSlider home__brandsBgsSlider">
                             <div class="swiper-wrapper">
-                                {% for client in clients %}
+                                {% for project in projects %}
                                     <div class="swiper-slide">
                                         <div class="carousel__bgSlide" style="background-color: {% cycle '#EDDDDD' '#DEEDEE' '#DDE0ED' '#F5E5D9' %};"></div>
                                     </div>
@@ -146,10 +136,10 @@
                         <div class="home__brandsCarouselContentWrapper">
                             <div class="swiper-container carousel_contentsSlider home__brandsContentsSlider">
                                 <div class="swiper-wrapper">
-                                    {% for client in clients %}
+                                    {% for project in projects %}
                                         <div class="swiper-slide">
-                                            <h3 class="carousel_contentItem subtitle">{{ client.name|default:'Name' }}</h3>
-                                            <div class="carousel__contentItem desc desc--small">{{ client.description|default:'Description'|truncatechars:500  }}</div>
+                                            <h3 class="carousel_contentItem subtitle">{{ project.title }}</h3>
+                                            <div class="carousel__contentItem desc desc--small">{{ project.description|truncatechars:500 }}<br><br><a class="link link--thick" href="{% url 'projects:project_detail' project.slug %}">View Project</a></div>
                                         </div>
                                     {% endfor %}
                                 </div>
@@ -161,48 +151,23 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <section class="home__story">
-        <div class="container">
-            <div class="home__storyWrapper js-scroll">
-                <h2 class="subtitle">{% trans 'Who we are' %}</h2>
-                <div class="desc home__storyDesc">{% trans 'We are an eclectic group of creatives that combine a broad range of expertise from technology, advertising, fashion & film industries to introduce a sense of unique style for every project. Through discovery sessions we find out what makes a brand tick and break down each problem into modules to figure out the most effective path to a solution.' %}</div>
-            </div>
-        </div>
-    </section>
-
-    <section class="home__products color-context color-context--products">
-        <div class="container">
-            <h2 class="title title--caps home__productsTitle js-scroll" data-speed="2">{%trans 'Brands<br>We<br>Love' %}</h2>
-        </div>
-        <div class="grid2 home__productsGrid">
-            <ol class="grid2__list">
-                {% for article in articles %}
-                    <li class="grid2__item js-scroll">
-                        <article>
-                            <div class="grid__itemInner">
-                                <a class="u-block" href="{% url 'articles:article_detail' article.slug %}" title="{{ article.title }}">
-                                    <figure>
-                                        {% block product_image %}
-                                            <div class="img-container img-container--square">
-                                                <img src="{% cloudinary_url article.image THUMBNAIL %}" alt="{{ article.name }}" >
-                                            </div>
-                                        {% endblock %}
-                                        <figcaption>
-                                            <h2>{{ article.title|capfirst }}</h2>
-                                            <h3>
-                                                <small>{% trans 'by' %} {{ article.author }}</small>
-                                            </h3>    
-                                        </figcaption>
-                                    </figure>
-                                </a>
-                            </div>
-                        </article>
+            <nav class="home__brandsNav">
+                <ul class="home__brandsNavList">
+                    <li class="home__brandsNavItem">
+                        <a href="{% url 'projects:projects' %}" class="cta cta--dark">{% trans 'View All Projects' %}</a>
                     </li>
-                {% endfor %}
-            </ol>
+                </ul>
+            </nav>
+
         </div>
+    </section>
+
+    <section class="about__footer" style="margin: 50px 0;">
+        <div class="logo">
+            <span class="logo__icon">
+                <img src="{% static 'dist/img/logo_full.svg' %}" alt="Unlabel Logo">
+            </span>
+        </div>
+        <h2 class="title title--small">{% trans "Style, Introduced." %}</h2>
     </section>
 {% endblock %}

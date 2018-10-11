@@ -16,7 +16,7 @@ def consts(request):
                 dict(
                     crop="fit", 
                     quality="auto",
-                    width=0.2
+                    width=1000
                 )
             ]
         ),

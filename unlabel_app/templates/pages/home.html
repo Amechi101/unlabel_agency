@@ -29,7 +29,11 @@
             <div class="about__story">
                 <div class="about__storyDesc js-scroll" data-speed="1"></div>
                 <div class="about__storyVisual js-scroll" data-speed="-1">
-                    <img src="{% static 'dist/img/temp/homepage-visual.jpg' %}" alt="Unlabel Story Visual" />
+                    {% if debug %}
+                        <img src="{% static 'dist/img/temp/homepage-visual.jpg' %}" alt="Unlabel Homepage Visual" />
+                    {% else %}
+                        <img src="https://res.cloudinary.com/hqz2myoz0/image/upload/c_fit,q_auto,w_1000/v1539284188/homepage-visual_dma5pk.jpg" alt="Unlabel Story Visual" />
+                    {% endif %} 
                 </div>
             </div>
         </div>
@@ -44,7 +48,12 @@
                     <article class="home_creatorGridItem">
                         <figure>
                             <div class="img-container img-container--portrait">
-                                <img src="{% static 'dist/img/temp/tech.jpg' %}" alt="Technology" />
+                                {% if debug %}
+                                     <img src="{% static 'dist/img/temp/tech.jpg' %}" alt="Unlabel Technology" />
+                                {% else %}
+                                    <img src="https://res.cloudinary.com/hqz2myoz0/image/upload/c_fit,q_auto,w_1000/v1539284187/tech_cwzzgq.jpg" alt="Unlabel Technology" />
+                                {% endif %}
+                               
                             </div>
                             <figcaption>
                                 <h3>{% trans 'We help you build your dream product' %}</h3>
@@ -67,7 +76,11 @@
                     <article class="home_creatorGridItem">
                         <figure>
                             <div class="img-container img-container--portrait">
-                                <img src="{% static 'dist/img/temp/design.jpg' %}" alt="Design" />
+                                {% if debug %}
+                                     <img src="{% static 'dist/img/temp/design.jpg' %}" alt="Unlabel Design" />
+                                {% else %}
+                                    <img src="https://res.cloudinary.com/hqz2myoz0/image/upload/c_fit,q_auto,w_1000/v1539284179/design_fxd5pt.jpg" alt="Unlabel Design" />
+                                {% endif %}
                             </div>
                             <figcaption>
                                 <h3>{% trans 'We design to engage and delight your customers' %}</h3>
@@ -80,7 +93,11 @@
                     <article class="home_creatorGridItem">
                         <figure>
                             <div class="img-container img-container--portrait">
-                                <img src="{% static 'dist/img/temp/influence.jpg' %}" alt="Influence" />
+                                {% if debug %}
+                                     <img src="{% static 'dist/img/temp/influence.jpg' %}" alt="Unlabel Influence" />
+                                {% else %}
+                                    <img src="https://res.cloudinary.com/hqz2myoz0/image/upload/c_fit,q_auto,w_1000/v1539284187/influence_haekie.jpg" alt="Unlabel Influence" />
+                                {% endif %}
                             </div>
                             <figcaption>
                                 <h3>{% trans 'We help you get the word out about your brand' %}</h3>
@@ -91,7 +108,11 @@
                     <article class="home_creatorGridItem">
                         <figure>
                             <div class="img-container img-container--portrait">
-                                <img src="{% static 'dist/img/temp/content.jpg' %}" alt="Content" />
+                                {% if debug %}
+                                    <img src="{% static 'dist/img/temp/content.jpg' %}" alt="Unlabel Content" />
+                                {% else %}
+                                    <img src="https://res.cloudinary.com/hqz2myoz0/image/upload/c_fit,q_auto,w_1000/v1539284180/content_rkopt2.jpg" alt="Unlabel Content" />
+                                {% endif %}
                             </div>
                             <figcaption>
                                 <h3>{% trans 'We create content that keeps your customers coming back for more' %}</h3>
@@ -115,7 +136,7 @@
                             <div class="swiper-wrapper">
                                 {% for project in projects %}
                                     <div class="swiper-slide">
-                                        <div class="visual visual--landscape js-scroll js-scroll-mask js-scroll-mask-right" data-speed='1'>
+                                        <div class="visual visual--landscape js-scroll js-scroll-mask js-scroll-mask-right">
                                             <img src="{% cloudinary_url project.cover_image GENERAL_IMAGES %}" alt="{{ project.title }}">
                                         </div>
                                     </div>

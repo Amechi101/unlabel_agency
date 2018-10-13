@@ -56,7 +56,9 @@
     <section class="invite__contact">
         <div class="container container--medium">
             <div class="invite__contactWrapper">
-                <p class="invite__contactLabel">{{project.services}}</p>
+                <p class="invite__contactLabel" >Client: <span style="font-family:'FaroWeb-RegularLucky';">{{project.client_name}}</span></p>
+                <br>
+                <p class="invite__contactLabel">Services: <span style="font-family:'FaroWeb-RegularLucky';">{{project.services}}</span></p>
                 <div class="share" style="margin-top: 50px;">
                     <p class="share__title">{% trans 'Share' %}</p>
                     <ul class="share__list">

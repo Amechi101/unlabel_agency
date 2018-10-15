@@ -19,6 +19,15 @@ class PageLoading {
 
 		//homepage animated elements
 		this.header = document.querySelector('.header');
+		this.homePageIntroMainText = document.querySelector('.about__titleContainer');
+		this.homePageIntroSubText = document.querySelector('.about__descContainer');
+		this.homePageIntroStoryDesc = document.querySelector('.about__storyDesc');
+		this.homePageIntroStoryVisual= document.querySelector('.about__storyVisual');
+
+		//about page animated elements
+		this.aboutPageIntroTitleContainer = document.querySelector('.invite__headerTitleContainer');
+		this.aboutPageIntroVisualContainer = document.querySelector('.invite__headerVisualContainer');
+
 
 		//loading progress
 		this.stat = document.getElementById("progstat");
@@ -31,6 +40,7 @@ class PageLoading {
 
 		this.loadPage();
 		this.pageTransition();
+		this.setPageAnimations();
 	}
 	loadPage() {
 
@@ -67,6 +77,8 @@ class PageLoading {
 			TweenMax.to(this.preLoaderElements, .7, { autoAlpha:0, display: 'none' }),
 
 			TweenMax.to(this.preLoaderWrap, .7, { autoAlpha:0, display: 'none' }),
+
+			this.getPageAnimations()
 		]
 
 		const pageAnimationsTimeLine = new TimelineMax({ 
@@ -120,31 +132,72 @@ class PageLoading {
 
 	setPageAnimations() {
 
-		// switch ( this.bodyTag ) {
-		// 	case 'homepage':
-		// 		TweenMax.set(this.header, { yPercent:-100 });
+		switch ( this.bodyTag ) {
+			case 'homepage':
+				TweenMax.set(this.header, { y:-100 });
+
+				TweenMax.set(this.homePageIntroMainText, { opacity: 0 });
+
+				TweenMax.set(this.homePageIntroSubText, { opacity: 0, y:20 });
+
+				TweenMax.set(this.homePageIntroStoryDesc, {opacity:0, width:0});
+
+				TweenMax.set(this.homePageIntroStoryVisual, {opacity:0, right:'-50px'});
 				
-		// 		break;
-		// 	default:
-		// 		// statements_def
-		// 		break;
-		// }
+				break;
+			case 'about-page':
+
+				// TweenMax.set(this.aboutPageIntroTitleContainer, { opacity:0, x:-20 });
+
+				// TweenMax.set(this.aboutPageIntroVisualContainer, { opacity:0, y:50 });
+
+			default:
+
+				break;
+		}
 
 	}
 
 	getPageAnimations() {
+
+		let headerTweens = [];
 		
-		// if ( this.bodyTag === 'homepage' ) {
-		// 	const headerNavItems = document.querySelectorAll(".header__navListItem");
+		if( this.bodyTag === 'homepage' ) {
 
-		// 	const headerTweens =  [
-		// 		TweenMax.to(this.header, .7, { yPercent:0 }),
+			// const headerNavItems = document.querySelectorAll(".header__navListItem");
 
-		// 		TweenMax.to( CSSRulePlugin.getRule(".dom-is-loaded .c-mask-title:before"), .7, { cssRule: { scaleX: 0 } } )
-		// 	]
+			headerTweens =  [
+				TweenMax.to(this.header, 1, { y:0 }),
 
-		// 	return headerTweens;
-		// }
+				TweenMax.to(this.homePageIntroMainText, 1, { opacity: 1 }),
+
+				TweenMax.to(this.homePageIntroSubText, 1, { opacity: 1, y:0 }),
+
+				TweenMax.to(this.homePageIntroStoryDesc, 1, { opacity:1, width: '100%' }),
+
+				TweenMax.to(this.homePageIntroStoryVisual, 1.5, { opacity:1, right:0 })
+
+				// TweenMax.to( CSSRulePlugin.getRule(".dom-is-loaded .c-mask-title:before"), .7, { cssRule: { scaleX: 0 } } )
+			]
+
+			return headerTweens;
+
+		} else if( this.bodyTag === 'about-page') {
+
+			// headerTweens = [
+			// 	TweenMax.to(this.aboutPageIntroTitleContainer, 1, { opacity:1, x:0 }),
+
+			// 	TweenMax.to(this.aboutPageIntroVisualContainer, 1, { opacity:1, y:0 })
+			// ]
+
+			return headerTweens;
+		
+		} else {
+			
+			return headerTweens;
+		
+		}
+
 	}
 }
 
